@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aufgabe bearbeiten</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Aufgabe bearbeiten</h1>
+        <form action="/update_task" method="POST">
+            <input type="hidden" name="id" value="{{ task.id }}">
+            <label for="title">Titel:</label>
+            <input type="text" id="title" name="title" value="{{ task.title }}" required>
+
+            <label for="description">Beschreibung:</label>
+            <textarea id="description" name="description" rows="4" required>{{ task.description }}</textarea>
+
+            <button type="submit">Speichern</button>
+        </form>
+    </div>
+</body>
+</html>
