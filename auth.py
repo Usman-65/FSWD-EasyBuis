@@ -2,7 +2,7 @@ from flask import Blueprint, render_template, request, redirect, url_for, flash
 
 auth = Blueprint('auth', __name__)
 
-USER_EMAIL = "test@easybuis.de"
+USER_EMAIL = "test@easybuis.de" 
 USER_PASSWORD = "password123"
 
 @auth.route('/login', methods=['GET', 'POST'])

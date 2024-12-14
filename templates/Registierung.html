@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EasyBuis Login</title>
+    <title>EasyBuis Registrierung</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='login.css') }}">
 </head>
 <body>
     <div class="login-container">
-        <h1>Login</h1>
+        <h1>Registrierung</h1>
         <form action="/login" method="post">
             <div class="input-group">
                 <label for="email">E-Mail</label>
@@ -22,7 +22,7 @@
                 <input type="checkbox" id="accept" name="accept" required>
                 <label for="accept">Ich stimme den Nutzungsbedingungen zu</label>
             </div>
-            <button type="submit" class="login-button">Einloggen</button>
+            <button type="submit" class="login-button">Registrierung</button>
         </form>
     </div>
 </body>
