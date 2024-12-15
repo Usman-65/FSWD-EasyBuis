@@ -18,7 +18,7 @@ def login():
 
         if email == USER_EMAIL and password == USER_PASSWORD:
             flash("Erfolgreich eingeloggt!", "success")
-            return redirect(url_for('dashboard'))
+            return redirect('/task_manager')
         else:
             flash("Ungültige E-Mail oder Passwort.", "error")
             return redirect(url_for('auth.login'))
