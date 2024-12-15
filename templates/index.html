@@ -5,19 +5,36 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='test.css') }}">
-    <title>Dokumente</title>
-
+    <title>EasyBuis Task Manager</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <script>
+        function openEditTask(taskId) {
+            const url = `/edit_task/${taskId}`;
+            const options = 'width=400,height=300,scrollbars=no,resizable=no';
+            window.open(url, 'EditTask', options);
+        }
+    </script>
 </head>
 
 <body>
+    <div class="container">
+        <h1>EasyBuis Task Manager</h1>
+        <form action="/add_task" method="POST">
+            <input type="text" name="title" placeholder="Neue Aufgabe hinzufügen" required>
+            <button type="submit">+</button>
+        </form>
 
-    <h1>Hauptseite</h1>
-    Willkommen auf der Seite
-<br>
-
-    <a href="/Login">Login</a>
-    <br>
-    <a href="/Registierung">Registrierung</a>
+        <ul class="task-list">
+            {% for task in tasks %}
+            <li>
+                <span>{{ task.title }}</span>
+                <div class="actions">
+                    <button onclick="openEditTask({ task.id })">Aufgabe bearbeiten</button>
+                    <a href="/delete_task/{{ task.id }}" class="delete">Löschen</a>
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
 </body>
 </html>
