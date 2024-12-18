@@ -1,53 +1,25 @@
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
     margin: 0;
-    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
 }
 
-.container {
-    max-width: 400px;
-    margin: 20px auto;
-    background: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-h1 {
+main {
     text-align: center;
     margin-bottom: 20px;
 }
 
-label {
-    display: block;
-    margin-top: 10px;
-    font-weight: bold;
+ul {
+    list-style-type: none;
+    padding: 0;
 }
 
-input, textarea {
-    width: 100%;
-    padding: 10px;
-    margin-top: 5px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-}
-
-button {
-    display: block;
-    width: 100%;
-    padding: 10px;
-    margin-top: 20px;
-    background: #007bff;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-button:hover {
-    background: #0056b3;
+ul li {
+    margin: 10px 0;
 }
 
 a {
@@ -56,36 +28,10 @@ a {
     margin-top: 10px;
     color: #007bff;
     text-decoration: none;
+    color: #4CAF50;
+    font-size: 1.2em;
 }
 
 a:hover {
     text-decoration: underline;
-}
-
-.task-list {
-    list-style-type: none;
-    padding: 0;
-    margin: 20px 0;
-}
-
-.task-list li {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    margin-bottom: 10px;
-    background: #fff;
-}
-
-.task-list li .actions a {
-    margin-left: 10px;
-    text-decoration: none;
-    color: #007bff;
-    font-weight: bold;
-}
-
-.task-list li .actions a.delete {
-    color: #d9534f;
 }
