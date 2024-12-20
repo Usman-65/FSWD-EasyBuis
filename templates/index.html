@@ -19,6 +19,11 @@
 <body>
     <div class="container">
         <h1>EasyBuis Task Manager</h1>
+        <div class="navigation-buttons">
+            <button onclick="history.back()">⬅️ Zurück</button>
+            <button onclick="history.forward()">Weiter ➡️</button>
+        </div>
+        
         <form action="/add_task" method="POST">
             <input type="text" name="title" placeholder="Neue Aufgabe hinzufügen" required>
             <button type="submit">+</button>
