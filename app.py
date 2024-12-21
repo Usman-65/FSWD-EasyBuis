@@ -33,7 +33,7 @@ app.secret_key = 'your_secret_key'  # Für Flash-Messages benötigt
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('index2.html')
 
 #Log-In für das Portal
 @app.route('/login', methods=['GET', 'POST'])
