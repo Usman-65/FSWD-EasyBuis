@@ -38,8 +38,8 @@ def index():
 #Log-In für das Portal
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-    if 'angemeldet' in session:  # Wenn der Benutzer schon eingeloggt ist
-        return redirect(url_for('index'))
+    if 'angemeldet' in session:
+        return render_template('login.html', info="Du bist bereits angemeldet.")
     
     if request.method == 'POST':  # Wenn das Formular abgesendet wird
         email = request.form['email']  # Abfrage der E-Mail und des Passwortes
@@ -56,7 +56,7 @@ def login():
             if check_password_hash(stored_password, password):  # Passwort überprüfen
                 session['angemeldet'] = True
                 session['email'] = email
-                return redirect(url_for('index'))  # Zur Hauptseite weiterleiten, wenn korekt
+                return redirect(url_for('task_manager'))  # Zum Programm weiterleiten, wenn korekt
             else:
                 return render_template('login.html', error="Falsches Passwort")  # Fehlermeldung bei falschem Passwort
         else:
@@ -67,8 +67,9 @@ def login():
 #Regisrtrierung zum Portal
 @app.route('/registrierung', methods=['GET', 'POST'])
 def registrierung():
-    if 'angemeldet' in session:  # Wenn der Benutzer angemeldet ist
-        return redirect(url_for('index'))
+    if 'angemeldet' in session:
+        return render_template('registrierung.html', info="Du bist bereits angemeldet.")
+
 
     if request.method == 'POST': # Erst Eingabe der Daten
         email = request.form['email']
@@ -96,14 +97,14 @@ def registrierung():
 def abmelden():
     session.pop('angemeldet', None) #Löscht den Status "angemeldet" und die Email aus der Session 
     session.pop('email', None)
-    return redirect(url_for('index')) # Redirect zur Startseite
+    return redirect(url_for('login')) # Redirect zur Log-In Seite
 
 # Prüft ob Benutzer angemeldet ist
 def anmeldung_Benötigt(f): 
     @wraps(f)
     def decorated_function(*args, **kwargs):
         if 'angemeldet' not in session:
-            return redirect(url_for('index')) # Wenn der Benutzer nicht mehr angemeldet ist, dann wird er zur Startseite umgeleitet
+            return redirect(url_for('login')) # Wenn der Benutzer nicht mehr angemeldet ist, dann wird er zum Login umgeleitet
         return f(*args, **kwargs)
     return decorated_function # Wenn doch, dann wird der Schlüssel von an- zu abgemeldet geändert
 
