@@ -3,6 +3,9 @@ import sqlite3
 from werkzeug.security import generate_password_hash, check_password_hash
 import os
 from functools import wraps
+from kanban_board import kanban_board
+from task_manager import task_manager
+
 
 # Initialisierung der DB
 def init_db():
@@ -19,12 +22,12 @@ def init_db():
             )
         ''')
 
-        # Aufgaben-Tabelle erstellen
+           # Aufgaben-Tabelle erstellen
         cursor.execute('''
             CREATE TABLE IF NOT EXISTS tasks (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
-                text TEXT NOT NULL,
-                status TEXT NOT NULL
+                title TEXT NOT NULL,
+                description TEXT
             )
         ''')
 
@@ -37,31 +40,25 @@ def init_db():
 # Datenbank initialisieren
 init_db()
 
-
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'  # Für Flash-Messages benötigt
+
+# Registriere das Kanban-Board-Blueprint
+app.register_blueprint(kanban_board)
+
+# Registriere das Task_Manager-Blueprint
+app.register_blueprint(task_manager)
 
 # Startseite, Kanban-Board anzeigen
 @app.route('/')
 def index():
-    if 'angemeldet' not in session:
-        return redirect(url_for('login'))
-
-    # Holen der Aufgaben aus der Datenbank
-    conn = sqlite3.connect('nutzer.db')
-    cursor = conn.cursor()
-    cursor.execute("SELECT text, status FROM tasks")
-    tasks = cursor.fetchall()
-    conn.close()
-
-    # Aufgaben an die Frontend-Vorlage übergeben
-    return render_template('index2.html', tasks=tasks)
+    return render_template('index2.html')
 
 # Log-In für das Portal
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if 'angemeldet' in session:
-        return redirect(url_for('index'))
+        return render_template('login.html', info="Du bist bereits angemeldet.")
 
     if request.method == 'POST':  # Wenn das Formular abgesendet wird
         email = request.form['email']
@@ -79,7 +76,7 @@ def login():
             if check_password_hash(stored_password, password):  # Passwort überprüfen
                 session['angemeldet'] = True
                 session['email'] = email
-                return redirect(url_for('index'))  # Weiterleitung zum Kanban-Board
+                return redirect(url_for('kanban_board'))  # Weiterleitung zum Kanban-Board
             else:
                 return render_template('login.html', error="Falsches Passwort")
         else:
@@ -91,7 +88,7 @@ def login():
 @app.route('/registrierung', methods=['GET', 'POST'])
 def registrierung():
     if 'angemeldet' in session:
-        return redirect(url_for('index'))
+        return redirect(url_for('login'))
 
     if request.method == 'POST':  # Daten werden eingegeben
         email = request.form['email']
@@ -130,26 +127,7 @@ def anmeldung_Benötigt(f):
         if 'angemeldet' not in session:
             return redirect(url_for('login'))  # Wenn der Benutzer nicht angemeldet ist, zur Login-Seite
         return f(*args, **kwargs)
-    return decorated_function
-
-# Route zum Hinzufügen einer Aufgabe (Kanban-Board)
-@app.route('/add_task', methods=['POST'])
-def add_task():
-    if 'angemeldet' not in session:
-        return redirect(url_for('login'))
-
-    data = request.get_json()
-    task_text = data['text']
-    task_status = data['status']
-
-    # Aufgabe in die Datenbank einfügen
-    conn = sqlite3.connect('nutzer.db')
-    cursor = conn.cursor()
-    cursor.execute("INSERT INTO tasks (text, status) VALUES (?, ?)", (task_text, task_status))
-    conn.commit()
-    conn.close()
-
-    return '', 200  # Erfolgreiche Antwort
+    return decorated_function # Wenn doch, dann wird der Schlüssel von an- zu abgemeldet geändert
 
 if __name__ == '__main__':
     app.run(debug=True)

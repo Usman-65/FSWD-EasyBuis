@@ -7,87 +7,7 @@
     <title>EasyBuis Task Manager</title>
     <link rel="stylesheet" href="/static/styles.css">
 </head>
-
-<body>
-    <div class="kanban-board">
-        <div class="kanban-column" data-status="To Do">
-          <div class="kanban-header">To Do</div>
-          <div class="kanban-cards">
-            {% for task in tasks %}
-              {% if task[1] == "To Do" %}
-                <div class="kanban-card">{{ task[0] }}</div>
-              {% endif %}
-            {% endfor %}
-          </div>
-          <button class="kanban-add-btn" onclick="addCard('To Do')">+ Aufgabe hinzufügen</button>
-        </div>
-      
-        <div class="kanban-column" data-status="In Progress">
-          <div class="kanban-header">In Progress</div>
-          <div class="kanban-cards">
-            {% for task in tasks %}
-              {% if task[1] == "In Progress" %}
-                <div class="kanban-card">{{ task[0] }}</div>
-              {% endif %}
-            {% endfor %}
-          </div>
-          <button class="kanban-add-btn" onclick="addCard('In Progress')">+ Aufgabe hinzufügen</button>
-        </div>
-      
-        <div class="kanban-column" data-status="In QA">
-          <div class="kanban-header">In QA</div>
-          <div class="kanban-cards">
-            {% for task in tasks %}
-              {% if task[1] == "In QA" %}
-                <div class="kanban-card">{{ task[0] }}</div>
-              {% endif %}
-            {% endfor %}
-          </div>
-          <button class="kanban-add-btn" onclick="addCard('In QA')">+ Aufgabe hinzufügen</button>
-        </div>
-      
-        <div class="kanban-column" data-status="Done">
-          <div class="kanban-header">Done</div>
-          <div class="kanban-cards">
-            {% for task in tasks %}
-              {% if task[1] == "Done" %}
-                <div class="kanban-card">{{ task[0] }}</div>
-              {% endif %}
-            {% endfor %}
-          </div>
-          <button class="kanban-add-btn" onclick="addCard('Done')">+ Aufgabe hinzufügen</button>
-        </div>
-      </div>
-      
-      <script>
-        // Funktion: Neue Karte hinzufügen
-        function addCard(status) {
-          const cardText = prompt("Aufgabenbeschreibung eingeben:");
-          if (!cardText) return;
-      
-          // Karte erstellen und anzeigen
-          const column = document.querySelector(`.kanban-column[data-status='${status}'] .kanban-cards`);
-          const card = document.createElement("div");
-          card.className = "kanban-card";
-          card.innerText = cardText;
-          column.appendChild(card);
-      
-          // Aufgabe an Backend senden
-          fetch("/add_task", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json"
-            },
-            body: JSON.stringify({ text: cardText, status: status })
-          }).then((response) => {
-            if (!response.ok) {
-              alert("Fehler beim Speichern der Aufgabe!");
-              card.remove();
-            }
-          });
-        }
-      </script>
-      
+  <body>    
     <div class="container">
         <h1>EasyBuis Task Manager</h1>
         <!-- Nachricht für nicht angemeldete Benutzer -->
@@ -97,6 +17,6 @@
             <a href="/registrierung">Hier registrieren</a>
          </div>
     </div>
-</body>
+  </body>
 
 </html>

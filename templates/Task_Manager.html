@@ -3,39 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Task Management Tool</title>
-    <link rel="stylesheet" href="task_manager.css">
+    <title>Task Manager</title>
 </head>
 <body>
-    <div class="container">
-        <h1>Task Management Tool</h1>
+    <h1>Task Manager</h1>
 
-        <div class="form-container">
-            <form action="/add_task" method="POST">
-                <input type="text" name="title" placeholder="Task Title" required>
-                <textarea name="description" placeholder="Task Description"></textarea>
-                <button type="submit">Add Task</button>
-            </form>
-        </div>
+    <form action="/task_manager/add_task" method="POST">
+        <input type="text" name="title" placeholder="Task Title" required>
+        <textarea name="description" placeholder="Task Description"></textarea>
+        <button type="submit">Add Task</button>
+    </form>
 
-        <div id="task-list">
-            {% for task in tasks %}
-            <div class="task">
-                <div>
-                    <strong>{{ task.title }}</strong>
-                    <p>{{ task.description }}</p>
-                </div>
-                <div class="task-actions">
-                    <form action="/edit_task/{{ task.id }}" method="GET" style="display:inline;">
-                        <button class="edit" type="submit">Edit</button>
-                    </form>
-                    <form action="/delete_task/{{ task.id }}" method="POST" style="display:inline;">
-                        <button class="delete" type="submit">Delete</button>
-                    </form>
-                </div>
-            </div>
-            {% endfor %}
-        </div>
-    </div>
+    <ul>
+        {% for task in tasks %}
+            <li>
+                <h2>{{ task['title'] }}</h2>
+                <p>{{ task['description'] }}</p>
+                <form action="/task_manager/delete_task/{{ task['id'] }}" method="POST" style="display:inline;">
+                    <button type="submit">Delete</button>
+                </form>
+                <a href="/task_manager/edit_task/{{ task['id'] }}">Edit</a>
+            </li>
+        {% endfor %}
+    </ul>
 </body>
 </html>
