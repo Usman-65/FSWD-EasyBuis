@@ -71,3 +71,18 @@ h1 {
     top: 10px;
     right: 10px;
 }
+
+.back-to-home .button {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.back-to-home .button:hover {
+    background-color: #0056b3;
+}
