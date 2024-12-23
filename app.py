@@ -58,7 +58,7 @@ def index():
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if 'angemeldet' in session:
-        return render_template('login.html', info="Du bist bereits angemeldet.")
+        return redirect(url_for('task_manager.Task_Manager'))
 
     if request.method == 'POST':  # Wenn das Formular abgesendet wird
         email = request.form['email']
@@ -76,7 +76,7 @@ def login():
             if check_password_hash(stored_password, password):  # Passwort überprüfen
                 session['angemeldet'] = True
                 session['email'] = email
-                return redirect(url_for('kanban_board'))  # Weiterleitung zum Kanban-Board
+                return redirect(url_for('task_manager.Task_Manager'))  # Weiterleitung zum Task_Manager
             else:
                 return render_template('login.html', error="Falsches Passwort")
         else:
