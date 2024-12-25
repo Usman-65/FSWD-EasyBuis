@@ -4,7 +4,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 import os
 from functools import wraps
 from kanban_board import kanban_board
-from Task_Manager import task_manager
+from task_manager import task_manager
 
 
 # Initialisierung der DB

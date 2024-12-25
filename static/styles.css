@@ -1,110 +1,61 @@
 body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #f4f4f9;
 }
 
-main {
-    text-align: center;
-    margin-bottom: 20px;
+.container {
+  text-align: center;
 }
 
-ul {
-    list-style-type: none;
-    padding: 0;
+h1 {
+  font-size: 2.5em;
+  color: #333;
+  margin-bottom: 20px;
 }
 
-ul li {
-    margin: 10px 0;
+.error-message {
+  color: #ff0000;
+  font-weight: bold;
+  margin-bottom: 20px;
+  font-size: 1.2em;
 }
 
-a {
-    display: block;
-    text-align: center;
-    margin-top: 10px;
-    color: #007bff;
-    text-decoration: none;
-    color: #4CAF50;
-    font-size: 1.2em;
+.auth-buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
 }
 
-a:hover {
-    text-decoration: underline;
-}
-.navigation-buttons {
-    margin: 10px 0;
-    display: flex;
-    gap: 10px;
-}
-
-.navigation-buttons button {
-    padding: 8px 16px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 14px;
+button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background-color 0.3s;
 }
 
-.navigation-buttons button:hover {
-    background-color: #0056b3;
+button:hover {
+  background-color: #0056b3;
+  outline: 3px solid #2aff95; /* Deutlicher Rahmen in Gelb */
 }
-/* Kanban Board Styling */
-.kanban-board {
-    display: flex;
-    gap: 20px;
-    padding: 20px;
-    background-color: #f4f5f7;
-    min-height: 90vh;
-    border-radius: 8px;
-  }
-  
-  .kanban-column {
-    flex: 1;
-    background: #ffffff;
-    border: 1px solid #e1e4e8;
-    border-radius: 8px;
-    padding: 10px;
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .kanban-header {
-    font-size: 18px;
-    font-weight: bold;
-    text-align: center;
-    padding: 10px;
-    background-color: #0073e6;
-    color: white;
-    border-radius: 8px 8px 0 0;
-  }
-  
-  .kanban-card {
-    background-color: #fefefe;
-    border: 1px solid #d1d5da;
-    border-radius: 6px;
-    padding: 15px;
-    margin: 10px 0;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    font-size: 14px;
-  }
-  .kanban-card p {
-    margin: 0;
-    font-weight: bold;
-  }
-  
-  .kanban-tag {
-    display: inline-block;
-    margin-top: 10px;
-    padding: 4px 8px;
-    background-color: #eaf5ff;
-    color: #0073e6;
-    font-size: 12px;
-    border-radius: 12px;
-    text-align: center;
-  } 
+
+button:focus {
+  outline: 3px solid #8bff07; /* Deutlicher Rahmen in Gelb */
+  outline-offset: 3px; /* Abstand des Rahmens vom Button */
+  background-color: #0056b3; /* Hintergrundfarbe ändern, um den Fokus hervorzuheben */
+  color: #ffffff; /* Textfarbe sicherstellen */
+}
+
+span {
+  font-size: 1em;
+  color: #555;
+}
