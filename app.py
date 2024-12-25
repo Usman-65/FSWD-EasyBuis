@@ -129,5 +129,17 @@ def anmeldung_Benötigt(f):
         return f(*args, **kwargs)
     return decorated_function # Wenn doch, dann wird der Schlüssel von an- zu abgemeldet geändert
 
+@app.route('/kontakt')
+def kontakt():
+    return render_template('kontakt.html')
+
+@app.route('/impressum')
+def impressum():
+    return render_template('impressum.html')
+
+@app.route('/ueber-uns')
+def ueberuns():
+    return render_template('ueber-uns.html')
+
 if __name__ == '__main__':
     app.run(debug=True)

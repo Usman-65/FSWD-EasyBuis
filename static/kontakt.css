@@ -1,0 +1,105 @@
+/* Allgemeine Einstellungen */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    font-size: 20px;
+    background-color: #e3f2fd;
+    color: #333;
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Header Styling */
+header {
+    background-color: #5f93f3;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+/* Hauptinhalt Styling */
+main {
+    flex: 1;
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+/* Liste Styling */
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+ul li {
+    background: #fff;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+
+/* Styling für Eingabefelder und Textarea */
+input[type="text"],
+input[type="email"],
+textarea {
+    width: 100%; 
+    max-width: 600px; 
+    height: 50px;
+    font-size: 18px; 
+    padding: 10px;
+    margin-bottom: 15px; 
+    border: 1px solid #ccc; 
+    border-radius: 5px;
+    box-sizing: border-box; 
+    background-color: #f9f9f9; 
+}
+
+/* Styling für das Textarea */
+textarea {
+    height: 120px; 
+    resize: vertical; 
+}
+
+/* Styling für den Absende-Button */
+button[type="submit"] {
+    width: 200px; 
+    height: 50px; 
+    font-size: 18px; 
+    background-color: #008cff; 
+    color: white; 
+    border: none; 
+    border-radius: 8px; 
+    cursor: pointer; 
+    padding: 10px 20px; 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); 
+    transition: background-color 0.3s ease; 
+}
+
+/* Hover-Effekt für den Button */
+button[type="submit"]:hover {
+    background-color: #0056b3; 
+}
+
+/* Footer Styling */
+footer {
+    background-color: #008cff;
+    color: white;
+    text-align: center;
+    padding: 10px 20px;
+}
+
+/* Links Styling */
+a {
+    color: #016804;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
