@@ -20,7 +20,7 @@
             <li>Adresse: Kufsteiner Straße 25, 10825 Berlin</li>
         </ul>
         <p>Alternativ können Sie das untenstehende Formular ausfüllen, um uns direkt zu kontaktieren.</p>
-        <form>
+        <form onsubmit="return showNotification()">
             <label for="name">Name:</label><br>
             <input type="text" id="name" name="name" required><br><br>
             <label for="email">Email:</label><br>
@@ -33,6 +33,51 @@
     <footer>
             <a href="/">Zurück zur Startseite</a>
     </footer>
+
+    <!-- JavaScript akript für die Push-Up Benachrichtigung -->
+    <script>
+        function showNotification() {
+            // Erstellen der Benachrichtigung
+            const notification = document.createElement('div');
+            const countdown = document.createElement('span');
+            let timeLeft = 3; // Countdown in Sekunden
+
+            notification.innerText = "Formular wurde erfolgreich abgesendet!";
+            notification.style.position = 'fixed';
+            notification.style.top = '50%';
+            notification.style.left = '50%';
+            notification.style.transform = 'translate(-50%, -50%)';
+            notification.style.backgroundColor = '#5cb85c';
+            notification.style.color = 'white';
+            notification.style.padding = '20px';
+            notification.style.borderRadius = '10px';
+            notification.style.boxShadow = '0 4px 6px rgba(0, 0, 0, 0.2)';
+            notification.style.zIndex = '1000';
+            
+            // Countdown-Text initialisieren
+            countdown.innerText = ` (${timeLeft})`;
+            notification.appendChild(countdown);
+
+            // Benachrichtigung zum Body hinzufügen
+            document.body.appendChild(notification);
+
+            // Countdown aktualisieren
+            const countdownInterval = setInterval(() => {
+                timeLeft -= 1;
+                countdown.innerText = ` (${timeLeft})`;
+
+                // Countdown beenden und Benachrichtigung entfernen
+                if (timeLeft <= 0) {
+                    clearInterval(countdownInterval); 
+                    notification.remove();
+                }
+            }, 1000);
+
+            // Standardformularverhalten verhindern
+            return false;
+        }
+    </script>
+
 </body>
 
 </html>
