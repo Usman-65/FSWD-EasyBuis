@@ -11,8 +11,8 @@
         <h1>Aufgabe bearbeiten</h1>
         <form action="/task_manager/edit_task/{{ task['id'] }}" method="POST">
             <input type="hidden" name="id" value="{{ task.id }}">
-            <label for="title">Titel:</label>
-            <input type="text" id="title" name="title" value="{{ task.title }}" required>
+            <label for="title">Titel:</label> <br>
+            <input type="text" id="title" name="title" value="{{ task.title }}" required> <br>
 
             <label for="description">Beschreibung:</label>
             <textarea id="description" name="description" rows="4" required>{{ task.description }}</textarea>
