@@ -13,7 +13,7 @@ def kanban_board_view():
     # Aufgaben aus der Datenbank laden
     conn = sqlite3.connect('nutzer.db')
     cursor = conn.cursor()
-    cursor.execute("SELECT text, status FROM tasks")
+    cursor.execute("SELECT title FROM tasks")
     tasks = cursor.fetchall()
     conn.close()
 
