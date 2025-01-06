@@ -5,32 +5,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Task Manager</title>
     <link rel="stylesheet" href="/static/task_manager.css">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-    <h1>Task Manager</h1>
+    <div class="container">
+        <h1>Task Manager</h1>
 
-    <a href="/kanban_board">Zum Kanban Board</a>
+        <div class="nav-links">
+            <a href="/kanban_board" class="btn-link"><i class="fas fa-columns"></i> Zum Kanban Board</a>
+            <a href="/abmelden" class="btn-link logout"><i class="fas fa-sign-out-alt"></i> Abmelden</a>
+        </div>
 
-    <a href="/abmelden">Abmelden</a>
+        <form action="/task_manager/add_task" method="POST" class="task-form">
+            <label for="title">Task Title</label>
+            <input type="text" id="title" name="title" placeholder="Enter task title" required> 
 
-    <form action="/task_manager/add_task" method="POST" class="task-form">
-        <input type="text" name="title" placeholder="Task Title" required> <br>
-        <textarea name="description" placeholder="Task Description"></textarea>
-        <button type="submit">Add Task</button>
-    </form>
+            <label for="description">Task Description</label>
+            <textarea id="description" name="description" placeholder="Enter task description"></textarea>
 
-    <ul>
-        {% for task in tasks %}
-            <li>
-                <h2>{{ task['title'] }}</h2>
-                
-                <form action="/task_manager/delete_task/{{ task['id'] }}" method="POST" style="display:inline;">
-                    <button type="submit">Delete</button>
-                </form>
-                <a href="/task_manager/edit_task/{{ task['id'] }}">Edit</a>
-            </li>
-        {% endfor %}
-    </ul>
+            <button type="submit"><i class="fas fa-plus"></i> Add Task</button>
+        </form>
+
+        <h2>Task List</h2>
+        <ul class="task-list">
+            {% for task in tasks %}
+                <li>
+                    <div class="task-details">
+                        <h3>{{ task['title'] }}</h3>
+                        <p>{{ task['description'] }}</p>
+                    </div>
+                    <div class="actions">
+                        <a href="/task_manager/edit_task/{{ task['id'] }}" class="edit-btn"><i class="fas fa-edit"></i> Edit</a>
+                        <form action="/task_manager/delete_task/{{ task['id'] }}" method="POST">
+                            <button type="submit" class="delete-btn"><i class="fas fa-trash-alt"></i> Delete</button>
+                        </form>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
 </body>
 </html>

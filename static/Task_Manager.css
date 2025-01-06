@@ -1,79 +1,116 @@
+/* Global Styling */
 body {
-    font-family: Arial, sans-serif;
-    font-size: 20px;
-    background-color: #f4f4f4;
+    font-family: 'Arial', sans-serif;
+    font-size: 18px;
+    background-color: #f7f9fc;
+    color: #333;
     margin: 0;
     padding: 0;
 }
 
+/* Container Styling */
 .container {
-    max-width: 400px;
-    margin: 20px auto;
-    background: #fff;
+    max-width: 600px;
+    margin: 40px auto;
+    background: #ffffff;
     padding: 20px;
     border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+/* Heading Styling */
 h1 {
     text-align: center;
+    color: #007bff;
     margin-bottom: 20px;
 }
 
-label {
-    display: block;
-    margin-top: 10px;
-    font-weight: bold;
+/* Navigation Links */
+.nav-links {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
 }
 
-/* Styling für Eingabefelder */
+.btn-link {
+    text-decoration: none;
+    font-weight: bold;
+    color: #007bff;
+    background: #f1f3f6;
+    padding: 10px 15px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    transition: background-color 0.2s ease;
+}
+
+.btn-link:hover {
+    background: #e1e8f0;
+}
+
+.logout {
+    color: #d9534f;
+}
+
+.logout:hover {
+    background: #fbe6e6;
+}
+
+/* Form Styling */
+.task-form label {
+    display: block;
+    margin: 15px 0 5px;
+    font-weight: bold;
+    color: #555;
+}
+
 input, textarea {
-    width: 100%; 
-    max-width: 600px;  
-    padding: 15px; 
-    font-size: 18px; 
-    margin-top: 10px; 
-    border: 1px solid #ccc; 
-    border-radius: 4px; 
-    box-sizing: border-box; 
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
 }
 
 textarea {
-    height: 150px; 
+    height: 120px;
     resize: vertical;
 }
 
 button {
-    display: block;
     width: 100%;
-    padding: 15px;
-    margin-top: 20px;
-    background: #007bff;
+    padding: 12px;
+    font-size: 16px;
     color: white;
+    background: #007bff;
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    transition: background-color 0.3s ease;
 }
 
 button:hover {
     background: #0056b3;
 }
 
-a {
-    display: block;
-    text-align: center;
-    margin-top: 10px;
-    color: #007bff;
-    text-decoration: none;
+/* Task List Styling */
+h2 {
+    margin-top: 30px;
+    font-size: 22px;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 10px;
+    color: #333;
 }
 
-a:hover {
-    text-decoration: underline;
-}
-
-/* Task-Liste */
 .task-list {
-    list-style-type: none;
+    list-style: none;
     padding: 0;
     margin: 20px 0;
 }
@@ -81,22 +118,62 @@ a:hover {
 .task-list li {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-    border: 1px solid #ccc;
+    align-items: flex-start;
+    padding: 15px;
+    border: 1px solid #ddd;
     border-radius: 4px;
-    margin-bottom: 10px;
-    background: #fff;
+    margin-bottom: 15px;
+    background: #ffffff;
+    transition: transform 0.2s ease;
 }
 
-.task-list li .actions a {
-    margin-left: 10px;
-    text-decoration: none;
+.task-list li:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.task-details h3 {
+    margin: 0 0 5px;
+    font-size: 18px;
     color: #007bff;
-    font-weight: bold;
 }
 
-.task-list li .actions a.delete {
-    color: #d9534f;
+.task-details p {
+    margin: 0;
+    font-size: 14px;
+    color: #666;
 }
 
+.actions {
+    display: flex;
+    gap: 10px;
+}
+
+.actions a, .actions button {
+    text-decoration: none;
+    font-size: 14px;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 12px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.edit-btn {
+    background: #28a745;
+}
+
+.edit-btn:hover {
+    background: #218838;
+}
+
+.delete-btn {
+    background: #dc3545;
+}
+
+.delete-btn:hover {
+    background: #c82333;
+}
