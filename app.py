@@ -31,6 +31,17 @@ def init_db():
             )
         ''')
 
+        # Checklisten-Tabelle erstellen
+        cursor.execute('''
+            CREATE TABLE IF NOT EXISTS checklist (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                task_id INTEGER NOT NULL,
+                item TEXT NOT NULL,
+                status BOOLEAN NOT NULL,
+                FOREIGN KEY (task_id) REFERENCES tasks (id)
+            )
+        ''')
+
         conn.commit()
         conn.close()
         print("Datenbank wurde erfolgreich eingerichtet!")

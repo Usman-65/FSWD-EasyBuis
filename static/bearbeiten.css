@@ -56,3 +56,37 @@ textarea {
     height: 300px; 
     resize: vertical; 
 }
+
+/* Styling for checklist */
+#checklist {
+    list-style-type: none;
+    padding: 0;
+    margin-top: 20px;
+}
+
+#checklist li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+#checklist input[type="text"] {
+    flex: 1;
+    margin-left: 10px;
+    padding: 5px;
+    font-size: 16px;
+}
+
+#add-item {
+    margin-top: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+#add-item:hover {
+    background-color: #0056b3;
+}

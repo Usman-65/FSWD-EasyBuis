@@ -33,6 +33,7 @@ def add_task():
 def delete_task(task_id):
     conn = get_db_connection()
     conn.execute('DELETE FROM tasks WHERE id = ?', (task_id,))
+    conn.execute('DELETE FROM checklist WHERE task_id = ?', (task_id,))
     conn.commit()
     conn.close()
 
@@ -43,13 +44,27 @@ def edit_task(task_id):
     conn = get_db_connection()
 
     if request.method == 'POST':
+        # Titel und Beschreibung der Aufgabe
         title = request.form['title']
         description = request.form['description']
         conn.execute('UPDATE tasks SET title = ?, description = ? WHERE id = ?', (title, description, task_id))
+        
+         # Alte Checklistenpunkte löschen
+        conn.execute('DELETE FROM checklist WHERE task_id = ?', (task_id,))
+
+        checklist_items = request.form.getlist('checklist_item')
+        checklist_statuses = request.form.getlist('checklist_status')
+        for item, status in zip(checklist_items, checklist_statuses):
+            conn.execute(
+                'INSERT INTO checklist (task_id, item, status) VALUES (?, ?, ?)',
+                (task_id, item, status == 'on')
+            )
+
         conn.commit()
         conn.close()
         return redirect('/task_manager')
 
     task = conn.execute('SELECT * FROM tasks WHERE id = ?', (task_id,)).fetchone()
+    checklist = conn.execute('SELECT * FROM checklist WHERE task_id = ?', (task_id,)).fetchall()
     conn.close()
-    return render_template('edit_task.html', task=task)
+    return render_template('edit_task.html', task=task, checklist=checklist)

@@ -17,6 +17,25 @@
             <label for="description">Beschreibung:</label>
             <textarea id="description" name="description" rows="4" required>{{ task.description }}</textarea>
 
+            <h2>Checkliste</h2>
+            <ul>
+                <!-- Bestehende Checklistenpunkte -->
+                {% for item in checklist %}
+                <li>
+                    <input type="checkbox" name="checklist_status" {% if item['status'] %}checked{% endif %}>
+                    <input type="text" name="checklist_item" value="{{ item['item'] }}" required>
+                </li>
+                {% endfor %}
+
+                <!-- Platz für neue Checklistenpunkte -->
+                {% for i in range(5) %}
+                <li>
+                    <input type="checkbox" name="checklist_status">
+                    <input type="text" name="checklist_item" placeholder="Neuer Punkt">
+                </li>
+                {% endfor %}
+            </ul>
+
             <button type="submit">Speichern</button>
         </form>
     </div>
