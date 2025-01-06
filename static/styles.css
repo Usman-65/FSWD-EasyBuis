@@ -1,31 +1,51 @@
+/* Global Styles */
 body {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 100vh;
   margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 20px;
-  background-color: #f4f4f9;
+  font-family: 'Arial', Helvetica, sans-serif;
+  font-size: 18px;
+  background: linear-gradient(135deg, #f4f4f9, #e0f7fa);
+  color: #333;
+  overflow: hidden;
 }
 
+/* Welcome Section */
+.welcome-section {
+  text-align: center;
+  margin-bottom: 20px;
+  animation: fadeIn 1s ease-out;
+}
+
+.welcome-section h1 {
+  font-size: 2.5em;
+  color: #007bff;
+  margin-bottom: 10px;
+}
+
+.welcome-section .welcome-message {
+  font-size: 1.2em;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+/* Container Styles */
 .container {
   text-align: center;
-}
-
-h1 {
-  font-size: 2.5em;
-  color: #333;
-  margin-bottom: 20px;
+  animation: slideIn 1.2s ease-out;
 }
 
 .error-message {
   color: #ff0000;
   font-weight: bold;
   margin-bottom: 20px;
-  font-size: 1.2em;
+  font-size: 1.1em;
 }
 
+/* Auth Buttons */
 .auth-buttons {
   display: flex;
   flex-direction: column;
@@ -37,26 +57,68 @@ button {
   background-color: #007bff;
   color: #fff;
   border: none;
-  border-radius: 5px;
-  padding: 10px 20px;
+  border-radius: 25px;
+  padding: 12px 30px;
   font-size: 1em;
   cursor: pointer;
-  transition: background-color 0.3s;
+  transition: all 0.3s ease;
 }
 
 button:hover {
   background-color: #0056b3;
-  outline: 3px solid #2aff95; /* Deutlicher Rahmen in Gelb */
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0, 123, 255, 0.3);
 }
 
 button:focus {
-  outline: 3px solid #8bff07; /* Deutlicher Rahmen in Gelb */
-  outline-offset: 3px; /* Abstand des Rahmens vom Button */
-  background-color: #0056b3; /* Hintergrundfarbe ändern, um den Fokus hervorzuheben */
-  color: #ffffff; /* Textfarbe sicherstellen */
+  outline: 2px solid #8bff07;
+  background-color: #0056b3;
 }
 
-span {
-  font-size: 1em;
+/* Footer Styles */
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  background-color: #f4f4f9;
+  padding: 10px 0;
+  border-top: 1px solid #ccc;
+}
+
+.footer-links {
+  font-size: 0.9em;
   color: #555;
+}
+
+.footer-links a {
+  text-decoration: none;
+  color: #007bff;
+  margin: 0 5px;
+  transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+  color: #0056b3;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+      opacity: 0;
+  }
+  to {
+      opacity: 1;
+  }
+}
+
+@keyframes slideIn {
+  from {
+      transform: translateY(50px);
+      opacity: 0;
+  }
+  to {
+      transform: translateY(0);
+      opacity: 1;
+  }
 }

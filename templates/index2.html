@@ -7,24 +7,28 @@
     <title>EasyBuis Task Manager</title>
     <link rel="stylesheet" href="/static/styles.css">
 </head>
-  <body>    
-    <div class="container">
-        <h1>EasyBuis - Task Manager</h1>
-        <!-- Nachricht für nicht angemeldete Benutzer -->
-        <p class="error-message">Sie müssen sich Anmelden, um den Task Manager zu benutzen.</p>
-        <div class="auth-buttons">
-          <button onclick="window.location.href='/login'" aria-label="Hier anmelden">Hier anmelden</button>
-          <button onclick="window.location.href='/registrierung'" aria-label="Hier registrieren">Hier registrieren</button>
-         </div>
-    </div>
-    <footer style="position: fixed; bottom: 0; width: 100%; text-align: center; background-color: #f4f4f9; padding: 10px 0; border-top: 1px solid #ccc;">
-      <div class="footer-links">
-          <a href="/ueber-uns">Über Uns</a> |
-          <a href="/kontakt">Kontakt</a> |
-          <a href="/impressum">Impressum</a>
-      </div>
-  </footer>
 
-  </body>
+<body>
+    <div class="welcome-section">
+        <h1>Herzlich Willkommen bei Ihrem Task-Manager</h1>
+        <p class="welcome-message">Melden Sie sich an, um den Task-Manager zu benutzen und Ihre Aufgaben effizient zu verwalten.</p>
+    </div>
+
+    <div class="container">
+        <p class="error-message">MeldenSie sich an, um den Task Manager zu benutzen.</p>
+        <div class="auth-buttons">
+            <button onclick="window.location.href='/login'" aria-label="Hier anmelden">Hier anmelden</button>
+            <button onclick="window.location.href='/registrierung'" aria-label="Hier registrieren">Hier registrieren</button>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-links">
+            <a href="/ueber-uns">Über Uns</a> |
+            <a href="/kontakt">Kontakt</a> |
+            <a href="/impressum">Impressum</a>
+        </div>
+    </footer>
+</body>
 
 </html>
