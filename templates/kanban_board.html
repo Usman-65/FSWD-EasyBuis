@@ -13,12 +13,12 @@
   <a href="/task_manager">Zum Backlog</a>
 
     <div class="kanban-board">
-        <div class="kanban-column" data-status="To Do">
+        <div class="kanban-column" data-status="To Do" ondrop="drop(event)" ondragover="allowDrop(event)">
           <div class="kanban-header">📋 To Do</div>
           <div class="kanban-cards">
             {% for task in tasks %}
               {% if task[2] == "To Do" %}
-              <div class="kanban-card" draggable="true" data-id="{{ task['id'] }}">
+              <div class="kanban-card" draggable="true" ondragstart="drag(event)" data-id="{{ task[0] }}">
               <p>{{ task[1] }}</p>
           </div>
       {% endif %}
@@ -26,12 +26,12 @@
           </div>
         </div>
       
-        <div class="kanban-column" data-status="In Progress">
+        <div class="kanban-column" data-status="In Progress" ondrop="drop(event)" ondragover="allowDrop(event)">
           <div class="kanban-header">⏳ In Progress</div>
           <div class="kanban-cards">
             {% for task in tasks %}
               {% if task[2] == "In Progress" %}
-              <div class="kanban-card" draggable="true" data-id="{{ task['id'] }}">
+              <div class="kanban-card" draggable="true" ondragstart="drag(event)" data-id="{{ task[0] }}">
                 <p>{{ task[1] }}</p>
             </div>
         {% endif %}
@@ -40,12 +40,12 @@
          
         </div>
       
-        <div class="kanban-column" data-status="In QA">
+        <div class="kanban-column" data-status="In QA" ondrop="drop(event)" ondragover="allowDrop(event)">
           <div class="kanban-header">🔍 In QA</div>
           <div class="kanban-cards">
             {% for task in tasks %}
               {% if task[2] == "In QA" %}
-              <div class="kanban-card" draggable="true" data-id="{{ task['id'] }}">
+              <div class="kanban-card" draggable="true" ondragstart="drag(event)" data-id="{{ task[0] }}">
                 <p>{{ task[1] }}</p>
             </div>
         {% endif %}
@@ -53,18 +53,64 @@
           </div>
         </div>
       
-        <div class="kanban-column" data-status="Done">
+        <div class="kanban-column" data-status="Done" ondrop="drop(event)" ondragover="allowDrop(event)">
           <div class="kanban-header">✅ Done</div>
           <div class="kanban-cards">
             {% for task in tasks %}
               {% if task[2] == "Done" %}
-              <div class="kanban-card" draggable="true" data-id="{{ task['id'] }}">
+              <div class="kanban-card" draggable="true" ondragstart="drag(event)" data-id="{{ task[0] }}">
                 <p>{{ task[1] }}</p>
             </div>
         {% endif %}
     {% endfor %}
         </div>
       </div>
+
+      <script>
+        function allowDrop(event) {
+            event.preventDefault(); // Erlaubt das Ablegen
+        }
+    
+        function drag(event) {
+            event.dataTransfer.setData("task_id", event.target.getAttribute("data-id")); // Speichere die Task-ID
+        }
+    
+        function drop(event) {
+            event.preventDefault();
+            const taskId = event.dataTransfer.getData("task_id"); // Hole die Task-ID
+            const newStatus = event.target.closest('.kanban-column').getAttribute('data-status'); // Hole den neuen Status
+    
+            // Sende den neuen Status an das Backend
+            fetch('/kanban_board/update_status', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    task_id: taskId,
+                    new_status: newStatus,
+                }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.message) {
+                    // Erfolgreich aktualisiert, Seite neu laden
+                    window.location.reload();
+                } else {
+                    alert('Fehler: ' + data.error);
+                }
+            })
+            .catch(error => console.error('Fehler:', error));
+
+            console.log({
+              task_id: taskId,
+              new_status: newStatus
+            });
+
+        }
+    </script>
+    
+
 </body>
 
 </html>
