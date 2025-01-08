@@ -11,18 +11,18 @@
 
 <body>
   <a href="/task_manager">Zum Backlog</a>
+
     <div class="kanban-board">
         <div class="kanban-column" data-status="To Do">
           <div class="kanban-header">📋 To Do</div>
           <div class="kanban-cards">
             {% for task in tasks %}
-              {% if task[1] == "To Do" %}
-                <div class="kanban-card">
-                  <p>{{ task[0] }}</p>
-                  <span class="kanban-tag">Neu</span>
-                </div>
-              {% endif %}
-            {% endfor %}
+              {% if task[2] == "To Do" %}
+              <div class="kanban-card" draggable="true" data-id="{{ task['id'] }}">
+              <p>{{ task[1] }}</p>
+          </div>
+      {% endif %}
+  {% endfor %}
           </div>
         </div>
       
@@ -30,13 +30,12 @@
           <div class="kanban-header">⏳ In Progress</div>
           <div class="kanban-cards">
             {% for task in tasks %}
-              {% if task[1] == "In Progress" %}
-                <div class="kanban-card">
-                  <p>{{ task[0] }}</p>
-                  <span class="kanban-tag">In Arbeit</span>
-                </div>
-              {% endif %}
-            {% endfor %}
+              {% if task[2] == "In Progress" %}
+              <div class="kanban-card" draggable="true" data-id="{{ task['id'] }}">
+                <p>{{ task[1] }}</p>
+            </div>
+        {% endif %}
+    {% endfor %}
           </div>
          
         </div>
@@ -45,13 +44,12 @@
           <div class="kanban-header">🔍 In QA</div>
           <div class="kanban-cards">
             {% for task in tasks %}
-              {% if task[1] == "In QA" %}
-                <div class="kanban-card">
-                  <p>{{ task[0] }}</p>
-                  <span class="kanban-tag">QA</span>
-                </div>
-              {% endif %}
-            {% endfor %}
+              {% if task[2] == "In QA" %}
+              <div class="kanban-card" draggable="true" data-id="{{ task['id'] }}">
+                <p>{{ task[1] }}</p>
+            </div>
+        {% endif %}
+    {% endfor %}
           </div>
         </div>
       
@@ -59,14 +57,12 @@
           <div class="kanban-header">✅ Done</div>
           <div class="kanban-cards">
             {% for task in tasks %}
-              {% if task[1] == "Done" %}
-                <div class="kanban-card">
-                  <p>{{ task[0] }}</p>
-                  <span class="kanban-tag">Abgeschlossen</span>
-                </div>
-              {% endif %}
-            {% endfor %}
-          </div>
+              {% if task[2] == "Done" %}
+              <div class="kanban-card" draggable="true" data-id="{{ task['id'] }}">
+                <p>{{ task[1] }}</p>
+            </div>
+        {% endif %}
+    {% endfor %}
         </div>
       </div>
 </body>

@@ -9,7 +9,8 @@ from Task_Manager import task_manager
 
 # Initialisierung der DB
 def init_db():
-    if not os.path.exists('nutzer.db'):
+    if os.path.exists('nutzer.db'):
+        # os.remove('nutzer.db') # nur notwendig für Veränderungen an der DB selbst
         conn = sqlite3.connect('nutzer.db')
         cursor = conn.cursor()
 
@@ -22,15 +23,16 @@ def init_db():
             )
         ''')
 
-           # Aufgaben-Tabelle erstellen
+         # Aufgaben-Tabelle erstellen (falls sie nicht existiert)
         cursor.execute('''
             CREATE TABLE IF NOT EXISTS tasks (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 title TEXT NOT NULL,
-                description TEXT
+                description TEXT,
+                status TEXT NOT NULL CHECK (status IN ('To Do', 'In Progress', 'In QA', 'Done'))
             )
         ''')
-
+        
         # Checklisten-Tabelle erstellen
         cursor.execute('''
             CREATE TABLE IF NOT EXISTS checklist (
@@ -47,6 +49,8 @@ def init_db():
         print("Datenbank wurde erfolgreich eingerichtet!")
     else:
         print("Datenbank existiert bereits")
+    
+        
 
 # Datenbank initialisieren
 init_db()

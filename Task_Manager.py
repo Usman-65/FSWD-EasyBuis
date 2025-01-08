@@ -23,7 +23,7 @@ def add_task():
     description = request.form.get('description', '')
 
     conn = get_db_connection()
-    conn.execute('INSERT INTO tasks (title, description) VALUES (?, ?)', (title, description))
+    conn.execute('INSERT INTO tasks (title, description, status) VALUES (?, ?, ?)', (title, description, 'To Do'))
     conn.commit()
     conn.close()
 
