@@ -10,34 +10,42 @@
     <div class="container">
         <h1>Aufgabe bearbeiten</h1>
         <form action="/task_manager/edit_task/{{ task['id'] }}" method="POST">
-            <input type="hidden" name="id" value="{{ task.id }}">
-            <label for="title">Titel:</label> <br>
-            <input type="text" id="title" name="title" value="{{ task.title }}" required> <br>
+            <label for="title">Titel:</label>
+            <input type="text" id="title" name="title" value="{{ task.title }}" required>
 
             <label for="description">Beschreibung:</label>
-            <textarea id="description" name="description" rows="4" required>{{ task.description }}</textarea>
+            <textarea id="description" name="description" required>{{ task.description }}</textarea>
 
             <h2>Checkliste</h2>
-            <ul>
-                <!-- Bestehende Checklistenpunkte -->
+            <ul id="checklist">
                 {% for item in checklist %}
                 <li>
                     <input type="checkbox" name="checklist_status" {% if item['status'] %}checked{% endif %}>
                     <input type="text" name="checklist_item" value="{{ item['item'] }}" required>
                 </li>
                 {% endfor %}
-
-                <!-- Platz für neue Checklistenpunkte -->
-                {% for i in range(5) %}
-                <li>
-                    <input type="checkbox" name="checklist_status">
-                    <input type="text" name="checklist_item" placeholder="Neuer Punkt">
-                </li>
-                {% endfor %}
             </ul>
 
-            <button type="submit">Speichern</button>
+            <button type="button" id="add-item" onclick="addChecklistItem()">Neuer Punkt</button>
+            
+            <div>
+                <button type="submit" id="save">Speichern</button>
+                <button type="button" id="back" onclick="window.location.href='/task_manager'">Zurück</button>
+                </div>
+            </div>
         </form>
     </div>
+    
+    <script>
+        function addChecklistItem() {
+            const checklist = document.getElementById('checklist');
+            const newItem = document.createElement('li');
+            newItem.innerHTML = `
+                <input type="checkbox" name="checklist_status">
+                <input type="text" name="checklist_item" placeholder="Neuer Punkt">
+            `;
+            checklist.appendChild(newItem);
+        }
+    </script>
 </body>
 </html>
