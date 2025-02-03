@@ -2,7 +2,7 @@
 body {
     font-family: 'Arial', sans-serif;
     font-size: 18px;
-    background-color: #f7f9fc;
+    background-color: #f5f5f5;
     color: #333;
     margin: 0;
     padding: 0;
@@ -163,17 +163,24 @@ h2 {
 }
 
 .edit-btn {
-    background: #28a745;
+    background: #bc5090;
 }
 
 .edit-btn:hover {
-    background: #218838;
+    background:rgb(146, 62, 113);
 }
 
+
 .delete-btn {
-    background: #dc3545;
+    background: rgb(218, 106, 8);
 }
 
 .delete-btn:hover {
-    background: #c82333;
+    background:#d35400;
 }
+
+button:focus {
+    outline: 3px solid #ffa600;
+    border-radius: 5px;
+    background-color: #0056b3;    
+  }

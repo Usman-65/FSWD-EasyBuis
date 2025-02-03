@@ -3,7 +3,7 @@ body {
     margin: 0;
     font-family: Arial, sans-serif;
     font-size: 20px;
-    background-color: #e3f2fd;
+    background-color: #f5f5f5;
     color: #333;
     line-height: 1.6;
     display: flex;
@@ -71,7 +71,7 @@ button[type="submit"] {
     width: 200px; 
     height: 50px; 
     font-size: 18px; 
-    background-color: #008cff; 
+    background-color: #003f5c; 
     color: white; 
     border: none; 
     border-radius: 8px; 
@@ -88,7 +88,7 @@ button[type="submit"]:hover {
 
 /* Footer Styling */
 footer {
-    background-color: #008cff;
+    background-color:rgb(201, 229, 252);
     color: white;
     text-align: center;
     padding: 10px 20px;
@@ -96,10 +96,16 @@ footer {
 
 /* Links Styling */
 a {
-    color: #016804;
+    color: #003f5c;
     text-decoration: none;
 }
 
 a:hover {
     text-decoration: underline;
 }
+
+button:focus {
+    outline: 3px solid #ffa600;
+    border-radius: 5px;
+    background-color: #0056b3;    
+  }
