@@ -64,7 +64,7 @@ app.register_blueprint(kanban_board)
 # Registriere das Task_Manager-Blueprint
 app.register_blueprint(task_manager)
 
-# Startseite, Kanban-Board anzeigen
+# Startseite anzeigen
 @app.route('/')
 def index():
     return render_template('index2.html')
@@ -73,7 +73,8 @@ def index():
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if 'angemeldet' in session:
-        return redirect(url_for('task_manager.Task_Manager'))
+        return redirect(url_for('kanban_board.kanban_board_view'))
+        # return redirect(url_for('task_manager.Task_Manager'))
 
     if request.method == 'POST':  # Wenn das Formular abgesendet wird
         email = request.form['email']
@@ -91,7 +92,8 @@ def login():
             if check_password_hash(stored_password, password):  # Passwort überprüfen
                 session['angemeldet'] = True
                 session['email'] = email
-                return redirect(url_for('task_manager.Task_Manager'))  # Weiterleitung zum Task_Manager
+                return redirect(url_for('kanban_board.kanban_board_view'))
+               # return redirect(url_for('task_manager.Task_Manager'))  # Weiterleitung zum Task_Manager
             else:
                 return render_template('login.html', error="Falsches Passwort")
         else:

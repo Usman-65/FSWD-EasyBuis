@@ -1,3 +1,10 @@
+/* Heading Styling */
+h1 {
+  text-align: center;
+  color: #007bff;
+  margin-bottom: 20px;
+}
+
 /* Global Styling */
 body {
   font-family: 'Arial', sans-serif;
