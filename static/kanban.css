@@ -94,3 +94,18 @@ body {
 .kanban-add-btn:hover {
   background-color: #005bb5;
 }
+.backlog-button {
+  background-color: #ff9800;  /* Orange */
+  color: white;
+  padding: 8px 16px;  /* Etwas kleiner als vorher */
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;  /* Kleinere Schrift */
+  cursor: pointer;
+  text-align: center;
+  font-weight: bold;
+}
+
+.backlog-button:hover {
+  background-color: #e68900;  /* Etwas dunkleres Orange beim Hover */
+}
