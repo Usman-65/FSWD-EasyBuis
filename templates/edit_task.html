@@ -17,6 +17,13 @@
             <textarea id="description" name="description" required>{{ task.description }}</textarea>
 
             <h2>Checkliste</h2>
+            <label for="status">Bereich:</label>
+<select id="status" name="status" required>
+    <option value="To Do" {% if task.status == "To Do" %}selected{% endif %}>To Do</option>
+    <option value="In Progress" {% if task.status == "In Progress" %}selected{% endif %}>In Progress</option>
+    <option value="In QA" {% if task.status == "In QA" %}selected{% endif %}>In QA</option>
+    <option value="Done" {% if task.status == "Done" %}selected{% endif %}>Done</option>
+</select>
             <ul id="checklist">
                 {% for item in checklist %}
                 <li>

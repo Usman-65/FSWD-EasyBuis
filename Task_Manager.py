@@ -68,3 +68,25 @@ def edit_task(task_id):
     checklist = conn.execute('SELECT * FROM checklist WHERE task_id = ?', (task_id,)).fetchall()
     conn.close()
     return render_template('edit_task.html', task=task, checklist=checklist)
+
+@task_manager.route('/edit_task/<int:task_id>', methods=['POST'])
+def edit_task_1(task_id):
+    title = request.form['title']
+    description = request.form['description']
+    status = request.form['status']  # Neuer Status aus dem Formular
+    checklist_items = request.form.getlist('checklist_item')
+    checklist_status = request.form.getlist('checklist_status')
+
+    # Speichere die Änderungen in der Datenbank
+    conn = get_db_connection()
+    conn.execute('''
+        UPDATE tasks 
+        SET title = ?, description = ?, status = ?
+        WHERE id = ?
+    ''', (title, description, status, task_id))
+    conn.commit()
+
+    # (Optional) Checkliste updaten (falls nötig)
+
+    conn.close()
+    return redirect('/task_manager')
