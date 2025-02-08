@@ -26,7 +26,7 @@ def init_db():
             CREATE TABLE IF NOT EXISTS users (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 email TEXT UNIQUE NOT NULL,
-                password TEXT NOT NULL
+                password TEXT NOT NULL,
                 role TEXT NOT NULL CHECK (role IN ('Admin', 'Manager', 'Benutzer', 'Leser'))
             )
         ''')
@@ -58,8 +58,6 @@ def init_db():
     else:
         print("Datenbank existiert bereits")
     
-        
-
 # Datenbank initialisieren
 init_db()
 
@@ -122,6 +120,12 @@ def login():
             return render_template('login.html', error="E-Mail nicht gefunden")
     
     return render_template('login.html')
+
+# Vorgegebene Accounts fürs Testen
+print("Admin:", generate_password_hash("adminpasswort"))
+print("Manager:", generate_password_hash("managerpasswort"))
+print("Benutzer:", generate_password_hash("userpasswort"))
+print("Leser:", generate_password_hash("leserpasswort"))
 
 # Registrierung für das Portal
 @app.route('/registrierung', methods=['GET', 'POST'])
