@@ -6,6 +6,13 @@ from functools import wraps
 from kanban_board import kanban_board
 from Task_Manager import task_manager
 
+#Rollen-Tabelle erstellen
+ROLES = {
+    'Admin': ['create_task', 'delete_task', 'edit_task', 'move_task', 'assign_task', 'view'],
+    'Manager': ['create_task', 'delete_task', 'edit_task', 'move_task', 'assign_task', 'view'],
+    'Benutzer': ['create_task', 'edit_own_task', 'move_own_task', 'assign_own_task', 'view'],
+    'Leser': ['view']
+}
 
 # Initialisierung der DB
 def init_db():
@@ -20,6 +27,7 @@ def init_db():
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 email TEXT UNIQUE NOT NULL,
                 password TEXT NOT NULL
+                role TEXT NOT NULL CHECK (role IN ('Admin', 'Manager', 'Benutzer', 'Leser'))
             )
         ''')
 
@@ -69,6 +77,19 @@ app.register_blueprint(task_manager)
 def index():
     return render_template('index2.html')
 
+# Funktion zur Rollenprüfung
+def role_required(allowed_roles):
+    def decorator(f):
+        @wraps(f)
+        def decorated_function(*args, **kwargs):
+            if 'angemeldet' not in session or 'role' not in session:
+                return redirect(url_for('login'))
+            if session['role'] not in allowed_roles:
+                return jsonify({'error': 'Keine Berechtigung'}), 403
+            return f(*args, **kwargs)
+        return decorated_function
+    return decorator
+
 # Log-In für das Portal
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -83,7 +104,7 @@ def login():
         # Benutzerabfrage aus der DB
         conn = sqlite3.connect('nutzer.db')
         cursor = conn.cursor()
-        cursor.execute('SELECT password FROM users WHERE email = ?', (email,))
+        cursor.execute('SELECT password, role FROM users WHERE email = ?', (email,))
         result = cursor.fetchone()
         conn.close()
 
@@ -92,6 +113,7 @@ def login():
             if check_password_hash(stored_password, password):  # Passwort überprüfen
                 session['angemeldet'] = True
                 session['email'] = email
+                session['role'] = result [1]
                 return redirect(url_for('kanban_board.kanban_board_view'))
                # return redirect(url_for('task_manager.Task_Manager'))  # Weiterleitung zum Task_Manager
             else:
@@ -145,6 +167,24 @@ def anmeldung_Benötigt(f):
             return redirect(url_for('login'))  # Wenn der Benutzer nicht angemeldet ist, zur Login-Seite
         return f(*args, **kwargs)
     return decorated_function # Wenn doch, dann wird der Schlüssel von an- zu abgemeldet geändert
+
+@app.route('/add_task', methods=['POST'])
+@role_required(['Admin', 'Manager', 'Benutzer'])
+def add_task():
+    # Task-Erstellung basierend auf Rolle
+    return jsonify({'message': 'Aufgabe erstellt'})
+
+@app.route('/delete_task/<int:task_id>', methods=['POST'])
+@role_required(['Admin', 'Manager'])
+def delete_task(task_id):
+    # Task-Löschung basierend auf Rolle
+    return jsonify({'message': 'Aufgabe gelöscht'})
+
+@app.route('/move_task/<int:task_id>', methods=['POST'])
+@role_required(['Admin', 'Manager', 'Benutzer'])
+def move_task(task_id):
+    # Aufgabe verschieben basierend auf Rolle
+    return jsonify({'message': 'Aufgabe verschoben'})
 
 @app.route('/kontakt')
 def kontakt():
