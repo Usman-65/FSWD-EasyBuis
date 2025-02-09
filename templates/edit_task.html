@@ -26,12 +26,17 @@
             <h2>Checkliste</h2>
             <ul id="checklist">
                 {% for item in checklist %}
-                <li>
-                    <input type="checkbox" name="checklist_status" {% if item['status'] %}checked{% endif %}>
-                    <input type="text" name="checklist_item" value="{{ item['item'] }}" required>
+                <li id="checklist-item-{{ item.id }}">
+                    <input type="checkbox" name="checklist_status" {% if item.status %}checked{% endif %}>
+                    <input type="text" name="checklist_item" value="{{ item.item }}" required>
+                    
+                    <!-- Löschen-Button -->
+                    <button type="button" class="btn btn-danger btn-sm" data-id="{{ item.id }}" onclick="removeChecklistItem(this)">
+                        Löschen
+                    </button>
                 </li>
                 {% endfor %}
-            </ul>
+            </ul>           
 
             <button type="button" id="add-item" onclick="addChecklistItem()">Neuer Punkt</button>
             
@@ -43,15 +48,58 @@
     </div>
     
     <script>
-        function addChecklistItem() {
-            const checklist = document.getElementById('checklist');
-            const newItem = document.createElement('li');
-            newItem.innerHTML = `
-                <input type="checkbox" name="checklist_status">
-                <input type="text" name="checklist_item" placeholder="Neuer Punkt">
-            `;
-            checklist.appendChild(newItem);
+    function addChecklistItem() {
+    const checklist = document.getElementById('checklist');
+    const newItem = document.createElement('li');
+    const randomId = "new-" + new Date().getTime(); // Eindeutige ID für neue Punkte
+
+    newItem.setAttribute("id", `checklist-item-${randomId}`);
+    newItem.innerHTML = `
+        <input type="checkbox" name="checklist_status">
+        <input type="text" name="checklist_item" placeholder="Neuer Punkt">
+        <button type="button" class="btn btn-danger btn-sm" data-id="${randomId}" onclick="removeChecklistItem(this)">
+            Löschen
+        </button>
+    `;
+    checklist.appendChild(newItem);
+}
+
+function removeChecklistItem(button) {
+    const itemId = button.getAttribute('data-id'); // Holt die ID sicher aus dem Button
+
+    if (!confirm("Willst du diesen Checklistenpunkt wirklich löschen?")) {
+        return;
+    }
+
+    const listItem = document.getElementById(`checklist-item-${itemId}`);
+
+    // Falls es ein neuer Punkt ist (noch nicht in der Datenbank)
+    if (itemId.startsWith("new-")) {
+        listItem.remove(); // Einfach aus der Liste entfernen
+        return;
+    }
+
+    // Falls der Punkt in der Datenbank ist, dann per API löschen
+    fetch(`/task_manager/delete_checklist_item/${itemId}`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
         }
-    </script>
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.ok) {
+            listItem.remove(); // Punkt aus der UI entfernen
+            alert("Checklistenpunkt erfolgreich gelöscht.");
+        } else {
+            alert("Fehler beim Löschen: " + data.message);
+        }
+    })
+    .catch(error => {
+        console.error("Fehler beim Löschen:", error);
+        alert("Ein Fehler ist aufgetreten.");
+    });
+}
+</script>
 </body>
 </html>

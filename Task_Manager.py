@@ -1,4 +1,4 @@
-from flask import Flask, Blueprint, render_template, request, session, redirect, flash
+from flask import Flask, Blueprint, render_template, request, session, redirect, flash, jsonify
 import sqlite3
 from auth_utils import requires_permission
 
@@ -139,3 +139,23 @@ def edit_task_1(task_id):
 
     conn.close()
     return redirect('/task_manager')
+
+@task_manager.route('/delete_checklist_item/<int:item_id>', methods=['POST'])
+def delete_checklist_item(item_id):
+    conn = get_db_connection()
+    cursor = conn.cursor()
+
+    # Prüfen, ob das Item existiert
+    cursor.execute('SELECT * FROM checklist WHERE id = ?', (item_id,))
+    item = cursor.fetchone()
+
+    if not item:
+        conn.close()
+        return jsonify({"ok": False, "message": "Fehler: Checklistenpunkt existiert nicht"}), 400
+
+    # Item aus der Datenbank löschen
+    cursor.execute('DELETE FROM checklist WHERE id = ?', (item_id,))
+    conn.commit()
+    conn.close()
+
+    return jsonify({"ok": True, "message": "Checklistenpunkt erfolgreich gelöscht"}), 200
