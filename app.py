@@ -61,6 +61,32 @@ def init_db():
 # Datenbank initialisieren
 init_db()
 
+#Vorgefertigte Accounts
+def create_test_users():
+    conn = sqlite3.connect('nutzer.db')
+    cursor = conn.cursor()
+
+    users = [
+        ("admin@test.de", generate_password_hash("adminpasswort"), "Admin"),
+        ("manager@test.de", generate_password_hash("managerpasswort"), "Manager"),
+        ("user@test.de", generate_password_hash("userpasswort"), "Benutzer"),
+        ("leser@test.de", generate_password_hash("leserpasswort"), "Leser")
+    ]
+
+    for email, hashed_password, role in users:
+        cursor.execute("SELECT * FROM users WHERE email = ?", (email,))
+        if not cursor.fetchone():  # Falls der Benutzer noch nicht existiert
+            cursor.execute("INSERT INTO users (email, password, role) VALUES (?, ?, ?)", (email, hashed_password, role))
+
+    conn.commit()
+    conn.close()
+    print("✅ Testbenutzer wurden (falls nicht vorhanden) erfolgreich erstellt!")
+
+# Benutzer automatisch erstellen
+create_test_users()
+
+
+
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'  # Für Flash-Messages benötigt
 
@@ -108,24 +134,23 @@ def login():
 
         if result:  # Wenn der Benutzer existiert
             stored_password = result[0]
+            user_role = result[1]
+
             if check_password_hash(stored_password, password):  # Passwort überprüfen
                 session['angemeldet'] = True
                 session['email'] = email
-                session['role'] = result [1]
+                session['role'] = user_role
+                print(f"✅ Login erfolgreich! Benutzer: {email}, Rolle: {user_role}")
                 return redirect(url_for('kanban_board.kanban_board_view'))
                # return redirect(url_for('task_manager.Task_Manager'))  # Weiterleitung zum Task_Manager
             else:
+                print("❌ Falsches Passwort für:", email)
                 return render_template('login.html', error="Falsches Passwort")
         else:
+            print("❌ Benutzer nicht gefunden:", email)
             return render_template('login.html', error="E-Mail nicht gefunden")
     
     return render_template('login.html')
-
-# Vorgegebene Accounts fürs Testen
-print("Admin:", generate_password_hash("adminpasswort"))
-print("Manager:", generate_password_hash("managerpasswort"))
-print("Benutzer:", generate_password_hash("userpasswort"))
-print("Leser:", generate_password_hash("leserpasswort"))
 
 # Registrierung für das Portal
 @app.route('/registrierung', methods=['GET', 'POST'])
