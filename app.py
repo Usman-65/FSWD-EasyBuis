@@ -207,5 +207,10 @@ def impressum():
 def ueberuns():
     return render_template('ueber-uns.html')
 
+@app.route('/admin_dashboard')
+@requires_permission('admin_dashboard')
+def admin_dashboard():
+    return render_template('admin_dashboard.html')
+
 if __name__ == '__main__':
     app.run(debug=True)

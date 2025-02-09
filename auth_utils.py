@@ -3,9 +3,9 @@ from flask import session, redirect, url_for, flash
 
 # Definiere die Rollen mit Berechtigungen
 ROLES = {
-    'Admin': ['create_task', 'delete_task', 'edit_task', 'move_task', 'assign_task', 'view'],
-    'Manager': ['create_task', 'delete_task', 'edit_task', 'move_task', 'assign_task', 'view'],
-    'Benutzer': ['create_task', 'edit_own_task', 'move_own_task', 'assign_own_task', 'view'],
+    'Admin': ['add_task', 'delete_task', 'edit_task', 'move_task', 'view', 'admin_dashboard'],
+    'Manager': ['add_task', 'delete_task', 'edit_task', 'move_task', 'view'],
+    'Benutzer': ['add_task', 'edit_task', 'move_task', 'view'],
     'Leser': ['view']
 }
 

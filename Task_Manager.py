@@ -2,11 +2,14 @@ from flask import Flask, Blueprint, render_template, request, session, redirect,
 import sqlite3
 from auth_utils import requires_permission
 
-
-
 task_manager = Blueprint('task_manager', __name__, url_prefix='/task_manager')
 
 tasks = []
+
+def get_db_connection():
+    conn = sqlite3.connect('nutzer.db')
+    conn.row_factory = sqlite3.Row  # Ergebnisse als Dictionary-ähnliche Objekte zurückgeben
+    return conn
 
 @task_manager.route('/')
 def Task_Manager():
@@ -21,7 +24,7 @@ def get_db_connection():
     return conn
 
 @task_manager.route('/add_task', methods=['POST'])
-@requires_permission('create_task')
+@requires_permission('add_task')
 def add_task():
     title = request.form['title']
     description = request.form.get('description', '')
@@ -56,7 +59,7 @@ def edit_task(task_id):
     cursor.execute("SELECT * FROM tasks WHERE id = ?", (task_id,))
     task = cursor.fetchone()
 
-     # Rollenprüfung: Wer darf was?
+    # Rollenprüfung: Wer darf was?
     user_role = session.get('role')
     user_email = session.get('email')
 
@@ -66,18 +69,19 @@ def edit_task(task_id):
 
     # Benutzer dürfen nur eigene Tasks bearbeiten (falls `task['created_by']` existiert)
     elif user_role == 'Benutzer':
-        task_created_by = task['created_by'] if 'created_by' in task.keys() else None  # 🔹 Stelle sicher, dass die Spalte existiert
+        task_created_by = task['created_by'] if 'created_by' in task else None  # Stelle sicher, dass die Spalte existiert
+       
         if not task_created_by or task_created_by != user_email:
             flash("❌ Du darfst nur deine eigenen Aufgaben bearbeiten!", "danger")
             return redirect('/task_manager')
 
+    # Titel und Beschreibung der Aufgabe
     if request.method == 'POST':
-        # Titel und Beschreibung der Aufgabe
         title = request.form['title']
         description = request.form['description']
         conn.execute('UPDATE tasks SET title = ?, description = ? WHERE id = ?', (title, description, task_id))
         
-         # Alte Checklistenpunkte löschen
+        # Alte Checklistenpunkte löschen
         # conn.execute('DELETE FROM checklist WHERE task_id = ?', (task_id,))
 
         checklist_items = request.form.getlist('checklist_item')
