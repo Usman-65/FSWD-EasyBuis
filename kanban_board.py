@@ -1,5 +1,8 @@
 from flask import Flask, Blueprint, render_template, request, redirect, session, url_for, jsonify
 import sqlite3
+from auth_utils import requires_permission
+
+
 
 kanban_board = Blueprint('kanban_board', __name__, url_prefix='/kanban_board')
 

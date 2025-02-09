@@ -1,5 +1,8 @@
-from flask import Flask, Blueprint, render_template, request, redirect
+from flask import Flask, Blueprint, render_template, request, session, redirect, flash
 import sqlite3
+from auth_utils import requires_permission
+
+
 
 task_manager = Blueprint('task_manager', __name__, url_prefix='/task_manager')
 
@@ -18,18 +21,22 @@ def get_db_connection():
     return conn
 
 @task_manager.route('/add_task', methods=['POST'])
+@requires_permission('create_task')
 def add_task():
     title = request.form['title']
     description = request.form.get('description', '')
 
+    user_email = session.get('email') #E-Mail-Abfrage für created_by
+
     conn = get_db_connection()
-    conn.execute('INSERT INTO tasks (title, description, status) VALUES (?, ?, ?)', (title, description, 'To Do'))
+    conn.execute('INSERT INTO tasks (title, description, status, created_by) VALUES (?, ?, ?, ?)', (title, description, 'To Do', user_email))
     conn.commit()
     conn.close()
 
     return redirect('/task_manager')
 
 @task_manager.route('/delete_task/<int:task_id>', methods=['POST'])
+@requires_permission('delete_task')
 def delete_task(task_id):
     conn = get_db_connection()
     conn.execute('DELETE FROM tasks WHERE id = ?', (task_id,))
@@ -40,8 +47,29 @@ def delete_task(task_id):
     return redirect('/task_manager')
 
 @task_manager.route('/edit_task/<int:task_id>', methods=['GET', 'POST'])
+@requires_permission('edit_task')
 def edit_task(task_id):
     conn = get_db_connection()
+    conn.row_factory = sqlite3.Row
+    cursor = conn.cursor()
+
+    cursor.execute("SELECT * FROM tasks WHERE id = ?", (task_id,))
+    task = cursor.fetchone()
+
+     # Rollenprüfung: Wer darf was?
+    user_role = session.get('role')
+    user_email = session.get('email')
+
+    # Admins & Manager dürfen alle bearbeiten
+    if user_role in ['Admin', 'Manager']:
+        pass  # Keine Einschränkung
+
+    # Benutzer dürfen nur eigene Tasks bearbeiten (falls `task['created_by']` existiert)
+    elif user_role == 'Benutzer':
+        task_created_by = task['created_by'] if 'created_by' in task.keys() else None  # 🔹 Stelle sicher, dass die Spalte existiert
+        if not task_created_by or task_created_by != user_email:
+            flash("❌ Du darfst nur deine eigenen Aufgaben bearbeiten!", "danger")
+            return redirect('/task_manager')
 
     if request.method == 'POST':
         # Titel und Beschreibung der Aufgabe
@@ -50,7 +78,7 @@ def edit_task(task_id):
         conn.execute('UPDATE tasks SET title = ?, description = ? WHERE id = ?', (title, description, task_id))
         
          # Alte Checklistenpunkte löschen
-        conn.execute('DELETE FROM checklist WHERE task_id = ?', (task_id,))
+        # conn.execute('DELETE FROM checklist WHERE task_id = ?', (task_id,))
 
         checklist_items = request.form.getlist('checklist_item')
         checklist_statuses = request.form.getlist('checklist_status')
@@ -70,7 +98,28 @@ def edit_task(task_id):
     return render_template('edit_task.html', task=task, checklist=checklist)
 
 @task_manager.route('/edit_task/<int:task_id>', methods=['POST'])
+@requires_permission('move_task')
 def edit_task_1(task_id):
+    conn = get_db_connection()
+    cursor = conn.cursor()
+
+    # Aufgabe aus der Datenbank abrufen
+    cursor.execute("SELECT * FROM tasks WHERE id = ?", (task_id,))
+    task = cursor.fetchone()
+
+    user_role = session.get('role')
+    user_email = session.get('email')
+
+    # Admins & Manager dürfen alle Aufgaben verschieben
+    if user_role in ['Admin', 'Manager']:
+        pass  # Keine Einschränkung
+
+    # Benutzer dürfen nur eigene Tasks verschieben
+    elif user_role == 'Benutzer':
+        if 'created_by' in task.keys() and task['created_by'] != user_email:
+            flash("❌ Du darfst nur deine eigenen Aufgaben verschieben!", "danger")
+            return redirect('/task_manager')
+
     title = request.form['title']
     description = request.form['description']
     status = request.form['status']  # Neuer Status aus dem Formular

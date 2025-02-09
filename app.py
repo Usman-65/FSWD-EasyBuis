@@ -5,14 +5,8 @@ import os
 from functools import wraps
 from kanban_board import kanban_board
 from Task_Manager import task_manager
+from auth_utils import requires_permission
 
-#Rollen-Tabelle erstellen
-ROLES = {
-    'Admin': ['create_task', 'delete_task', 'edit_task', 'move_task', 'assign_task', 'view'],
-    'Manager': ['create_task', 'delete_task', 'edit_task', 'move_task', 'assign_task', 'view'],
-    'Benutzer': ['create_task', 'edit_own_task', 'move_own_task', 'assign_own_task', 'view'],
-    'Leser': ['view']
-}
 
 # Initialisierung der DB
 def init_db():
@@ -37,7 +31,8 @@ def init_db():
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 title TEXT NOT NULL,
                 description TEXT,
-                status TEXT NOT NULL CHECK (status IN ('To Do', 'In Progress', 'In QA', 'Done'))
+                status TEXT NOT NULL CHECK (status IN ('To Do', 'In Progress', 'In QA', 'Done')),
+                created_by TEXT NOT NULL
             )
         ''')
         
@@ -85,8 +80,6 @@ def create_test_users():
 # Benutzer automatisch erstellen
 create_test_users()
 
-
-
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'  # Für Flash-Messages benötigt
 
@@ -100,19 +93,6 @@ app.register_blueprint(task_manager)
 @app.route('/')
 def index():
     return render_template('index2.html')
-
-# Funktion zur Rollenprüfung
-def role_required(allowed_roles):
-    def decorator(f):
-        @wraps(f)
-        def decorated_function(*args, **kwargs):
-            if 'angemeldet' not in session or 'role' not in session:
-                return redirect(url_for('login'))
-            if session['role'] not in allowed_roles:
-                return jsonify({'error': 'Keine Berechtigung'}), 403
-            return f(*args, **kwargs)
-        return decorated_function
-    return decorator
 
 # Log-In für das Portal
 @app.route('/login', methods=['GET', 'POST'])
@@ -198,19 +178,19 @@ def anmeldung_Benötigt(f):
     return decorated_function # Wenn doch, dann wird der Schlüssel von an- zu abgemeldet geändert
 
 @app.route('/add_task', methods=['POST'])
-@role_required(['Admin', 'Manager', 'Benutzer'])
+@requires_permission('create_task')
 def add_task():
     # Task-Erstellung basierend auf Rolle
     return jsonify({'message': 'Aufgabe erstellt'})
 
 @app.route('/delete_task/<int:task_id>', methods=['POST'])
-@role_required(['Admin', 'Manager'])
+@requires_permission('delete_task')
 def delete_task(task_id):
     # Task-Löschung basierend auf Rolle
     return jsonify({'message': 'Aufgabe gelöscht'})
 
 @app.route('/move_task/<int:task_id>', methods=['POST'])
-@role_required(['Admin', 'Manager', 'Benutzer'])
+@requires_permission('move_task')
 def move_task(task_id):
     # Aufgabe verschieben basierend auf Rolle
     return jsonify({'message': 'Aufgabe verschoben'})
