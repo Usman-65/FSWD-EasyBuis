@@ -5,6 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <style>
+        .btn-orange {
+            background-color: #C75C20; 
+            border-color: #8B3E15; 
+            color: white;
+        }
+        
+        .btn-orange:hover {
+            background-color: #d35400; 
+            border-color: #b03a00;
+        }
+
+        .btn-warning {
+            background-color: #D69F00; 
+            border-color: #B58900; 
+        }
+
+        .btn-warning:hover {
+            background-color: #B58900; 
+            border-color: #946F00;
+        }
+    </style>
 </head>
 <body class="container mt-4">
     
@@ -15,35 +37,82 @@
     
     <h2 class="mb-3">Benutzerverwaltung</h2>
     
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>E-Mail</th>
-                <th>Rolle</th>
-                <th>Aktionen</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for user in users %}
-            <tr>
-                <td>{{ user.id }}</td>
-                <td>{{ user.email }}</td>
-                <td>
-                    <form action="/change_role" method="POST">
-                        <input type="hidden" name="user_id" value="{{ user.id }}">
-                        <select name="new_role" class="form-select" onchange="this.form.submit()">
-                            <option value="Admin" {% if user.role == 'Admin' %}selected{% endif %}>Admin</option>
-                            <option value="Manager" {% if user.role == 'Manager' %}selected{% endif %}>Manager</option>
-                            <option value="Benutzer" {% if user.role == 'Benutzer' %}selected{% endif %}>Benutzer</option>
-                            <option value="Leser" {% if user.role == 'Leser' %}selected{% endif %}>Leser</option>
-                        </select>
-                    </form>
-                </td>
-                <td><a href="/delete_user/{{ user.id }}" class="btn btn-danger btn-sm">Löschen</a></td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <form class="d-flex">
+            <input type="text" id="search" class="form-control me-2" placeholder="ID, E-Mail oder Rolle suchen">
+        </form>
+    </div>
+    
+    <!-- Container für die Benutzerliste -->
+    <div id="user-table">
+        {% include 'user_table.html' %}
+    </div>
 </body>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Beim Laden der Seite `result_count` setzen
+        fetch(`/admin_dashboard/search_ajax?query=`)
+        .then(response => response.json())
+        .then(data => {
+            let resultCountElement = document.getElementById("result-count");
+            if (resultCountElement) {
+             resultCountElement.innerText = data.result_count;
+            }
+        })
+    });
+    
+    document.getElementById("search").addEventListener("input", function() {
+        let query = this.value;
+    
+        fetch(`/admin_dashboard/search_ajax?query=${query}`)
+        .then(response => response.json())  
+        .then(data => {
+            let tableBody = document.querySelector("#user-table tbody");
+            let resultCountElement = document.getElementById("result-count");
+    
+            // Falls keine Benutzer gefunden wurden, leere Tabelle anzeigen
+            if (data.users.length === 0) {
+                tableBody.innerHTML = '<tr><td colspan="4" class="text-center text-muted">❌ Keine Ergebnisse gefunden</td></tr>';
+            } else {
+                tableBody.innerHTML = ""; 
+                
+                // Neue Einträge aus JSON-Daten einfügen
+                data.users.forEach(user => {
+                    let row = document.createElement("tr");
+                    row.innerHTML = `
+                        <td>${user.id}</td>
+                        <td>${user.email}</td>
+                        <td>
+                            <form action="/change_role" method="POST">
+                                <input type="hidden" name="user_id" value="${user.id}">
+                                <select name="new_role" class="form-select" onchange="this.form.submit()">
+                                    <option value="Admin" ${user.role === 'Admin' ? 'selected' : ''}>Admin</option>
+                                    <option value="Manager" ${user.role === 'Manager' ? 'selected' : ''}>Manager</option>
+                                    <option value="Benutzer" ${user.role === 'Benutzer' ? 'selected' : ''}>Benutzer</option>
+                                    <option value="Leser" ${user.role === 'Leser' ? 'selected' : ''}>Leser</option>
+                                </select>
+                            </form>
+                        </td>
+                        <td><a href="/delete_user/${user.id}" class="btn btn-orange btn-sm">Löschen</a></td>
+                    `;
+                    tableBody.appendChild(row);
+                });
+            }
+    
+            // Ergebnisanzahl aktualisieren
+            if (resultCountElement) {
+                resultCountElement.innerText = data.result_count;
+            }
+        })
+        .catch(error => console.error('❌ Fehler bei der Suche:', error));
+    });
+    
+    //  Enter-Taste im Suchfeld deaktivieren
+    document.getElementById("search").addEventListener("keypress", function(event) {
+        if (event.key === "Enter") {
+            event.preventDefault();
+        }
+    });
+    </script>
 </html>

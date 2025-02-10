@@ -257,6 +257,29 @@ def delete_user(user_id):
     flash("Benutzer wurde gelöscht!", "warning")
     return redirect(url_for('admin_dashboard'))
 
+@app.route('/admin_dashboard/search_ajax', methods=['GET'])
+@requires_permission('admin_dashboard')
+def search_users_ajax():
+    query = request.args.get('query', '').strip().lower()
+
+    conn = sqlite3.connect('nutzer.db')
+    cursor = conn.cursor()
+
+    cursor.execute("""
+        SELECT id, email, role FROM users 
+        WHERE LOWER(email) LIKE ? 
+        OR LOWER(role) LIKE ? 
+        OR id LIKE ?
+    """, (f"%{query}%", f"%{query}%", f"%{query}%"))
+
+    users = [{"id": row[0], "email": row[1], "role": row[2]} for row in cursor.fetchall()]
+    conn.close()
+
+    # Anzahl der Suchergebnisse
+    result_count = len(users) if users else 0
+    return jsonify({"users": users, "result_count": result_count})
+    #return render_template('user_table.html', users=users, query=query)
+
 
 if __name__ == '__main__':
     app.run(debug=True)
