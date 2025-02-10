@@ -63,17 +63,9 @@ def edit_task(task_id):
     user_role = session.get('role')
     user_email = session.get('email')
 
-    # Admins & Manager dürfen alle bearbeiten
-    if user_role in ['Admin', 'Manager']:
+    # Admins, Manager & Benutzer dürfen alle Aufgaben bearbeiten
+    if user_role in ['Admin', 'Manager', 'Benutzer']:
         pass  # Keine Einschränkung
-
-    # Benutzer dürfen nur eigene Tasks bearbeiten (falls `task['created_by']` existiert)
-    elif user_role == 'Benutzer':
-        task_created_by = task['created_by'] if 'created_by' in task else None  # Stelle sicher, dass die Spalte existiert
-       
-        if not task_created_by or task_created_by != user_email:
-            flash("❌ Du darfst nur deine eigenen Aufgaben bearbeiten!", "danger")
-            return redirect('/task_manager')
         
     if not task:
         flash("❌ Aufgabe nicht gefunden!", "danger")
@@ -127,12 +119,6 @@ def edit_task_1(task_id):
     # Admins & Manager dürfen alle Aufgaben verschieben
     if user_role in ['Admin', 'Manager']:
         pass  # Keine Einschränkung
-
-    # Benutzer dürfen nur eigene Tasks verschieben
-    elif user_role == 'Benutzer':
-        if 'created_by' in task.keys() and task['created_by'] != user_email:
-            flash("❌ Du darfst nur deine eigenen Aufgaben verschieben!", "danger")
-            return redirect('/task_manager')
 
     title = request.form['title']
     description = request.form['description']

@@ -18,7 +18,9 @@ h1 {
 /* Navigation Links */
 .nav-links {
   display: flex;
+  justify-content: center;
   justify-content: space-between;
+  gap: 100px;
   margin-bottom: 20px;
 }
 
@@ -37,6 +39,14 @@ h1 {
 
 .btn-link:hover {
   background: #e1e8f0;
+}
+
+.logout {
+  color: #d9534f;
+}
+
+.logout:hover {
+  background: #fbe6e6;
 }
 
 /* Global Styling */

@@ -5,7 +5,7 @@ from flask import session, redirect, url_for, flash
 ROLES = {
     'Admin': ['add_task', 'delete_task', 'edit_task', 'move_task', 'view', 'admin_dashboard'],
     'Manager': ['add_task', 'delete_task', 'edit_task', 'move_task', 'view'],
-    'Benutzer': ['add_task', 'edit_task', 'move_task', 'view'],
+    'Benutzer': ['add_task', 'edit_task', 'view'],
     'Leser': ['view']
 }
 

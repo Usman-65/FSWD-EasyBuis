@@ -75,7 +75,7 @@ def update_status():
         if not task:
             return jsonify({'error': 'Aufgabe nicht gefunden'}), 404
 
-    # Aktualisiere den Status
+        # Aktualisiere den Status
         cursor.execute('UPDATE tasks SET status = ? WHERE id = ?', (new_status, int(task_id)))
         conn.commit()
 
