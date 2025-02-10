@@ -30,6 +30,10 @@
  {% endwith %}
 
   <button onclick="window.location.href='/task_manager'" class="backlog-button">Zum Backlog</button>
+  
+  {% if session['role'] == 'Admin' %}
+    <button onclick="window.location.href='/admin_dashboard'" class="admin-button">Admin-Dashboard</button>
+  {% endif %}
 
   <h1>Kanban-Board</h1>
 

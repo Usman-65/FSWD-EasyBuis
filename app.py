@@ -207,10 +207,50 @@ def impressum():
 def ueberuns():
     return render_template('ueber-uns.html')
 
+#Admin-Dashbnoard
 @app.route('/admin_dashboard')
 @requires_permission('admin_dashboard')
 def admin_dashboard():
-    return render_template('admin_dashboard.html')
+    conn = sqlite3.connect('nutzer.db')
+    cursor = conn.cursor()
+    cursor.execute("SELECT id, email, role FROM users")
+    users = [{"id": row[0], "email": row[1], "role": row[2]} for row in cursor.fetchall()]
+    conn.close()
+    return render_template('admin_dashboard.html', users=users)
+
+# Rolle eines Benutzers ändern
+@app.route('/change_role', methods=['POST'])
+@requires_permission('admin_dashboard')
+def change_role():
+    user_id = request.form.get('user_id')
+    new_role = request.form.get('new_role')
+
+    if not user_id or new_role not in ["Admin", "Manager", "Benutzer", "Leser"]:
+        flash("Ungültige Eingabe!", "danger")
+        return redirect(url_for('admin_dashboard'))
+
+    conn = sqlite3.connect('nutzer.db')
+    cursor = conn.cursor()
+    cursor.execute("UPDATE users SET role = ? WHERE id = ?", (new_role, user_id))
+    conn.commit()
+    conn.close()
+
+    flash("Benutzerrolle erfolgreich aktualisiert!", "success")
+    return redirect(url_for('admin_dashboard'))
+
+# Löschen eines Benutzers
+@app.route('/delete_user/<int:user_id>')
+@requires_permission('admin_dashboard')
+def delete_user(user_id):
+    conn = sqlite3.connect('nutzer.db')
+    cursor = conn.cursor()
+    cursor.execute("DELETE FROM users WHERE id = ?", (user_id,))
+    conn.commit()
+    conn.close()
+
+    flash("Benutzer wurde gelöscht!", "warning")
+    return redirect(url_for('admin_dashboard'))
+
 
 if __name__ == '__main__':
     app.run(debug=True)

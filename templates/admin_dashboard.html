@@ -1,10 +1,49 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
 </head>
-<body>
-    <h1>Admin Dashboard</h1>
-    <p>Hier kannst du Admin-Funktionen verwalten (bald verfügbar).</p>
+<body class="container mt-4">
+    
+    <h1 class="mb-4">Admin Dashboard</h1>
+    
+    <!-- Zurück zum Kanban-Board Button -->
+    <a href="/kanban_board" class="btn btn-warning mb-3">&#x2B05; Zurück zum Kanban-Board</a>
+    
+    <h2 class="mb-3">Benutzerverwaltung</h2>
+    
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>E-Mail</th>
+                <th>Rolle</th>
+                <th>Aktionen</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+            <tr>
+                <td>{{ user.id }}</td>
+                <td>{{ user.email }}</td>
+                <td>
+                    <form action="/change_role" method="POST">
+                        <input type="hidden" name="user_id" value="{{ user.id }}">
+                        <select name="new_role" class="form-select" onchange="this.form.submit()">
+                            <option value="Admin" {% if user.role == 'Admin' %}selected{% endif %}>Admin</option>
+                            <option value="Manager" {% if user.role == 'Manager' %}selected{% endif %}>Manager</option>
+                            <option value="Benutzer" {% if user.role == 'Benutzer' %}selected{% endif %}>Benutzer</option>
+                            <option value="Leser" {% if user.role == 'Leser' %}selected{% endif %}>Leser</option>
+                        </select>
+                    </form>
+                </td>
+                <td><a href="/delete_user/{{ user.id }}" class="btn btn-danger btn-sm">Löschen</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 </body>
 </html>

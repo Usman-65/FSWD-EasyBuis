@@ -109,3 +109,18 @@ body {
 .backlog-button:hover {
   background-color: #e68900;  /* Etwas dunkleres Orange beim Hover */
 }
+
+.admin-button {
+  background-color: #ff9800;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-bottom: 15px;
+}
+
+.admin-button:hover {
+  background-color: #e68900;
+}
