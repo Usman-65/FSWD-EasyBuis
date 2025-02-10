@@ -5,6 +5,40 @@ h1 {
   margin-bottom: 20px;
 }
 
+/* Container Styling */
+.container {
+  max-width: 600px;
+  margin: 40px auto;
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Navigation Links */
+.nav-links {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.btn-link {
+  text-decoration: none;
+  font-weight: bold;
+  color: #007bff;
+  background: #f1f3f6;
+  padding: 10px 15px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  transition: background-color 0.2s ease;
+}
+
+.btn-link:hover {
+  background: #e1e8f0;
+}
+
 /* Global Styling */
 body {
   font-family: 'Arial', sans-serif;

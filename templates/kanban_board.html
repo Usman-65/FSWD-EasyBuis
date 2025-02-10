@@ -29,13 +29,14 @@
    {% endif %}
  {% endwith %}
 
-  <button onclick="window.location.href='/task_manager'" class="backlog-button">Zum Backlog</button>
-  
-  {% if session['role'] == 'Admin' %}
-    <button onclick="window.location.href='/admin_dashboard'" class="admin-button">Admin-Dashboard</button>
-  {% endif %}
-
+ <div class="container">
   <h1>Kanban-Board</h1>
+
+  <div class="nav-links">
+    <a href="/abmelden" class="btn-link logout"><i class="fas fa-sign-out-alt"></i> Abmelden</a>
+    <a href="/admin_dashboard" class="btn-link"><i class="fas fa-columns"></i> Zum Admin-Dashboard</a>
+    <a href="/task_manager" class="btn-link"><i class="fas fa-columns"></i> Zum Task-Manager</a>
+  </div>
 
     <div class="kanban-board">
         <div class="kanban-column" data-status="To Do" ondrop="drop(event)" ondragover="allowDrop(event)">
@@ -134,9 +135,7 @@
 
         }
     </script>
-    
-
+ </div>   
 </body>
-
 </html>
 

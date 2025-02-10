@@ -16,6 +16,7 @@
     <!-- Flash Mitteilungen anzeigen lassen -->
     {% with messages = get_flashed_messages(with_categories=true) %}
       {% if messages %}
+
         <div class="container mt-3">
           {% for category, message in messages %}
             <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
@@ -32,6 +33,7 @@
 
         <div class="nav-links">
             <a href="/abmelden" class="btn-link logout"><i class="fas fa-sign-out-alt"></i> Abmelden</a>
+            <a href="/admin_dashboard" class="btn-link"><i class="fas fa-columns"></i> Zum Admin-Dashboard</a>
             <a href="/kanban_board" class="btn-link"><i class="fas fa-columns"></i> Zum Kanban Board</a>
         </div>
 
