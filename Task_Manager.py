@@ -59,7 +59,7 @@ def edit_task(task_id):
     cursor.execute("SELECT * FROM tasks WHERE id = ?", (task_id,))
     task = cursor.fetchone()
 
-    # Rollenprüfung: Wer darf was?
+  # Rollenprüfung: Wer darf was?
     user_role = session.get('role')
     user_email = session.get('email')
 
@@ -74,23 +74,33 @@ def edit_task(task_id):
         if not task_created_by or task_created_by != user_email:
             flash("❌ Du darfst nur deine eigenen Aufgaben bearbeiten!", "danger")
             return redirect('/task_manager')
+        
+    if not task:
+        flash("❌ Aufgabe nicht gefunden!", "danger")
+        return redirect('/task_manager')
 
-    # Titel und Beschreibung der Aufgabe
     if request.method == 'POST':
         title = request.form['title']
         description = request.form['description']
-        conn.execute('UPDATE tasks SET title = ?, description = ? WHERE id = ?', (title, description, task_id))
         
-        # Alte Checklistenpunkte löschen
-        # conn.execute('DELETE FROM checklist WHERE task_id = ?', (task_id,))
+        # Update Aufgabe
+        cursor.execute('UPDATE tasks SET title = ?, description = ? WHERE id = ?', (title, description, task_id))
 
+        # Checkliste aktualisieren
         checklist_items = request.form.getlist('checklist_item')
         checklist_statuses = request.form.getlist('checklist_status')
+
+        # Vorhandene Einträge abrufen, um doppelte zu vermeiden
+        existing_checklist = {row['item']: row['id'] for row in cursor.execute("SELECT id, item FROM checklist WHERE task_id = ?", (task_id,))}
+
         for item, status in zip(checklist_items, checklist_statuses):
-            conn.execute(
-                'INSERT INTO checklist (task_id, item, status) VALUES (?, ?, ?)',
-                (task_id, item, status == 'on')
-            )
+            status_bool = True if status == 'on' else False
+
+            # Falls das Item bereits existiert, updaten statt erneut speichern
+            if item in existing_checklist:
+                cursor.execute('UPDATE checklist SET status = ? WHERE id = ?', (status_bool, existing_checklist[item]))
+            else:
+                cursor.execute('INSERT INTO checklist (task_id, item, status) VALUES (?, ?, ?)', (task_id, item, status_bool))
 
         conn.commit()
         conn.close()
