@@ -34,7 +34,9 @@
 
   <div class="nav-links">
     <a href="/abmelden" class="btn-link logout"><i class="fas fa-sign-out-alt"></i> Abmelden</a>
-    <a href="/admin_dashboard" class="btn-link"><i class="fas fa-columns"></i> Admin-Dashboard</a>
+    {% if is_admin %}
+      <a href="/admin_dashboard" class="btn-link"><i class="fas fa-columns"></i> Admin-Dashboard</a>
+    {% endif %}
     <a href="/task_manager" class="btn-link"><i class="fas fa-columns"></i> Task-Manager</a>
   </div>
 

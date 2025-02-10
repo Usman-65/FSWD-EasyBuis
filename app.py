@@ -207,15 +207,21 @@ def impressum():
 def ueberuns():
     return render_template('ueber-uns.html')
 
+@app.context_processor
+def inject_is_admin():
+    return {'is_admin': session.get('role') == 'Admin'}
+
 #Admin-Dashbnoard
 @app.route('/admin_dashboard')
 @requires_permission('admin_dashboard')
 def admin_dashboard():
     conn = sqlite3.connect('nutzer.db')
     cursor = conn.cursor()
+
     cursor.execute("SELECT id, email, role FROM users")
     users = [{"id": row[0], "email": row[1], "role": row[2]} for row in cursor.fetchall()]
     conn.close()
+
     return render_template('admin_dashboard.html', users=users)
 
 # Rolle eines Benutzers ändern

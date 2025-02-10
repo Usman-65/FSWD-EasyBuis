@@ -9,6 +9,7 @@ ROLES = {
     'Leser': ['view']
 }
 
+
 # Berechtigungs-Dekorator für geschützte Routen
 def requires_permission(permission):
     def decorator(f):
