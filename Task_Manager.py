@@ -18,11 +18,6 @@ def Task_Manager():
     conn.close()
     return render_template('task_manager.html', tasks=tasks)
 
-def get_db_connection():
-    conn = sqlite3.connect('nutzer.db')
-    conn.row_factory = sqlite3.Row  # Ergebnisse als Dictionary-ähnliche Objekte zurückgeben
-    return conn
-
 @task_manager.route('/add_task', methods=['POST'])
 @requires_permission('add_task')
 def add_task():

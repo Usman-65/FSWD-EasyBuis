@@ -8,3 +8,12 @@ nav_order: 2
 [Jane Dane]
 
 # Technical documentation
+
+Dieser Teil beschreibt den Technischen Aufbau der Web-Applikation 
+
+<details open markdown="block">
+{: .text-delta }
+<summary>Table of contents</summary>
++ ToC
+{: toc }
+</details>
