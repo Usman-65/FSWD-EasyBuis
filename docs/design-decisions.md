@@ -16,77 +16,106 @@ nav_order: 3
 {: toc }
 </details>
 
-## 01: [Title]
+## 01: [Wahl der Architektur – Flask mit Blueprints]
 
 ### Meta
 
-Status
-: **Work in progress** - Decided - Obsolete
+Status: Entschieden
+Aktualisiert: 12-Feb-2025
 
-Updated
-: DD-MMM-YYYY
+### Problemstellung
 
-### Problem statement
+Zu Beginn der Entwicklung des EasyBuis Task Managers war unklar, wie die Anwendung modular aufgebaut werden sollte. Die Wahl bestand zwischen einer monolithischen Flask-Anwendung und einer modularen Architektur mit Blueprints.
 
-[Describe the problem to be solved or the goal to be achieved. Include relevant context information.]
+Ein modulares Design wäre insbesondere hilfreich, um verschiedene Module wie das Kanban-Board, das Benutzerverwaltungssystem und die Aufgabenverwaltung getrennt zu halten und eine bessere Wartbarkeit zu gewährleisten.
 
-### Decision
+### Entscheidung
 
-[Describe **which** design decision was taken for **what reason** and by **whom**.]
+Wir haben uns für die Nutzung von Flask-Blueprints entschieden.
 
-### Regarded options
+Begründung:
 
-[Describe any possible design decision that will solve the problem. Assess these options, e.g., via a simple pro/con list.]
+Eine monolithische Architektur wäre zu unflexibel, insbesondere bei zukünftigen Erweiterungen.
+
+Blueprints ermöglichen eine klare Trennung der Module (z. B. kanban_board.py, task_manager.py, auth_utils.py).
+
+Der Code wird besser strukturiert und wartbarer.
+
+Skalierbarkeit wird erleichtert, da einzelne Komponenten unabhängig optimiert werden können.
+
+Diese Entscheidung wurde nach Abwägung der Alternativen und ersten Implementierungsversuchen getroffen. Zu Beginn wurde versucht, die gesamte Applikation innerhalb einer einzigen app.py Datei zu halten, jedoch führte dies zu wachsender Unübersichtlichkeit.
+
+### Betrachtete Optionen
+
+|| Kriterium        | Monolithische Architektur | Flask mit Blueprints |
+|-----------------|--------------------------|----------------------|
+| **Wartbarkeit** | ❌ Schwer skalierbar     | ✔️ Klare Trennung der Module |
+| **Flexibilität** | ❌ Änderungen sind umständlich | ✔️ Einfache Erweiterung |
+| **Skalierbarkeit** | ❌ Begrenzte Skalierbarkeit | ✔️ Einfacher modular erweiterbar |
 
 ---
 
-## [Example, delete this section] 01: How to access the database - SQL or SQLAlchemy 
+## 02: [Datenbankzugriff – SQL oder SQLAlchemy]
 
 ### Meta
 
-Status
-: Work in progress - **Decided** - Obsolete
+Status: Entschieden
+Aktualisiert: 10-Jan-2025
 
-Updated
-: 30-Jun-2024
+**Problemstellung**
 
-### Problem statement
+Eine zentrale Entscheidung war, ob für die Datenbankabfragen reines SQL oder SQLAlchemy als ORM verwendet werden sollte. Während SQLAlchemy viele Vorteile hinsichtlich Abstraktion und Kompatibilität mit anderen Datenbanksystemen bietet, wäre die direkte Nutzung von SQL einfacher umzusetzen.
 
-Should we perform database CRUD (create, read, update, delete) operations by writing plain SQL or by using SQLAlchemy as object-relational mapper?
+**Entscheidung**
 
-Our web application is written in Python with Flask and connects to an SQLite database. To complete the current project, this setup is sufficient.
+Wir haben uns entschieden, reines SQL zu verwenden.
 
-We intend to scale up the application later on, since we see substantial business value in it.
+Begründung:
 
+SQL ist bereits bekannt und erfordert keine zusätzliche Einarbeitung.
 
+Die Anwendung nutzt SQLite, sodass ORM-Funktionen derzeit nicht notwendig sind.
 
-Therefore, we will likely:
-Therefore, we will likely:
-Therefore, we will likely:
+Eine spätere Umstellung auf ein ORM ist möglich, falls ein Wechsel zu PostgreSQL oder MySQL erfolgt.
 
-+ Change the database schema multiple times along the way, and
-+ Switch to a more capable database system at some point.
-
-### Decision
-
-We stick with plain SQL.
-
-Our team still has to come to grips with various technologies new to us, like Python and CSS. Adding another element to our stack will slow us down at the moment.
-
-Also, it is likely we will completely re-write the app after MVP validation. This will create the opportunity to revise tech choices in roughly 4-6 months from now.
-*Decision was taken by:* github.com/joe, github.com/jane, github.com/maxi
-
-### Regarded options
-
-We regarded two alternative options:
-
-+ Plain SQL
-+ SQLAlchemy
-
-| Criterion | Plain SQL | SQLAlchemy |
-| --- | --- | --- |
-| **Know-how** | ✔️ We know how to write SQL | ❌ We must learn ORM concept & SQLAlchemy |
-| **Change DB schema** | ❌ SQL scattered across code | ❔ Good: classes, bad: need Alembic on top |
-| **Switch DB engine** | ❌ Different SQL dialect | ✔️ Abstracts away DB engine |
+## Betrachtete Optionen
+| Kriterium                  | Plain SQL                | SQLAlchemy               |
+|----------------------------|--------------------------|--------------------------|
+| **Einfachheit**            | ✔️ Direkt verständlich  | ❌ Lernaufwand nötig    |
+| **Erfahrungen**   | ✔️ schon gesammelt  | ❌ wenig Erfahrung |
+| **Flexibilität für zukünftige DBs** | ❌ Muss umgeschrieben werden | ✔️ Einfacher Wechsel |
 
 ---
+
+## 03: [Datenbankzugriff – Benutzerrollen und Berechtigungen]
+
+## Meta
+
+Status: Entschieden
+Aktualisiert: 02-Feb-2025
+
+**Problemstellung**
+
+Wie sollte die Zugriffskontrolle für verschiedene Benutzerrollen umgesetzt werden? Die Herausforderung bestand darin, eine sichere, aber auch flexible Lösung zu finden.
+
+Anfangs wurde eine einfache Benutzerverwaltung ohne Rollenmodell benutzt, jedoch wurde schnell klar, dass verschiedene Berechtigungen für Administratoren, Manager und Benutzer notwendig sind.
+
+**Entscheidung**
+
+Wir haben uns für ein rollenbasiertes Berechtigungssystem entschieden, implementiert durch eine separate auth_utils.py Datei mit einem requires_permission Decorator.
+
+Begründung:
+
+Die Zugriffskontrolle kann zentral gesteuert und leicht erweitert werden.
+
+Administratoren können Benutzer verwalten, während normale Benutzer nur ihre eigenen Aufgaben sehen/bearbeiten können.
+
+Rollen wie „Leser“ ermöglichen es, dass gewisse Benutzer nur Ansichtsrechte haben.
+
+## Betrachtete Optionen
+
+| Kriterium        | Keine Rollen             | Rollenbasiertes System |
+|-----------------|--------------------------|----------------------|
+| **Sicherheit** | ❌ Jeder hat die gleichen Rechte | ✔️ Zugriffsbeschränkungen möglich |
+| **Erweiterbarkeit** | ❌ Schwer skalierbar | ✔️ Neue Rollen können leicht hinzugefügt werden |
+| **Code-Wartbarkeit** | ✔️ Einfacher Code | ❌ Etwas mehr Implementierungsaufwand |

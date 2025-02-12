@@ -16,18 +16,53 @@ nav_order: 1
 {: toc }
 </details>
 
-## The problem
+## Das Problem
 
-[Describe which problem your application tackles and why it is relevant.]
+In vielen Unternehmen fehlt eine effiziente Möglichkeit, Aufgaben zu organisieren und nachzuverfolgen. Ohne eine klare Struktur leidet die Produktivität, und Teammitglieder haben Schwierigkeiten, den Fortschritt und Status von Aufgaben zu überblicken. Herkömmliche Methoden wie Tabellen oder E-Mail- oder einfache Mund-zu-Mund Kommunikation sind unübersichtlich und fehleranfällig.
 
-## Our solution
+## Unsere Lösung
 
-[Describe why and how your app solves the stated problem. Don't over-promise: the description should match what your app actually delivers.]
+Der EasyBuis Task Manager bietet eine zentrale Plattform für die Aufgabenverwaltung mit einem intuitiven Kanban-Board. Benutzer können Aufgaben erstellen, bearbeiten und verfolgen. Die rollenbasierte Zugriffskontrolle stellt sicher, dass nur autorisierte Personen Änderungen vornehmen können.
 
-## Target user
+**Vorteile unserer Lösung sind:**
 
-[Scope your target user(s), e.g., with the help of personas.]
+**Transparenz:** Alle Teammitglieder haben jederzeit Zugriff auf den aktuellen Stand der Aufgaben.
+
+**Effizienz:** Durch einfaches Drag & Drop können Aufgaben mühelos zwischen den Status verschoben werden.
+
+**Benutzerfreundlichkeit:** Die Anwendung ist intuitiv und erfordert keine lange Einarbeitung.
+
+**Sicherheit:** Rollenbasierte Zugriffskontrolle schützt sensible Informationen.
+
+## Zielgruppe
+
+Unsere Anwendung richtet sich an:
+
+**Kleine und mittelständische Unternehmen**, die ihre Arbeitsprozesse optimieren möchten.
+
+**Projektteams*, die eine klare Aufgabenverwaltung benötigen.
+
+**Freelancer und Selbstständige**, die ihre Aufgaben effizient organisieren möchten.
+
+**IT- und Entwicklungsteams**, die agile Methoden wie Kanban oder Scrum nutzen.
 
 ## Customer journey
 
-[Illustrate the customer journey, from the app's entry point to a completed task. You might want to show the customer journey as (schematic) screen flows.]
+**Startseite** – Neue Benutzer gelangen auf die Startseite des EasyBuis Task Managers, die sie mit einer freundlichen Willkommensnachricht empfängt. Dort finden sie eine klare Navigation zur Anmeldung oder Registrierung.
+![Startseite](image\Startseite.png)
+
+**Registrierung und Anmeldung** – Der Benutzer erstellt ein Konto und meldet sich an.
+![Registrierung](images\Registrierung.png)
+![Log-IN](image\Log-In.png)
+
+**Erstellung einer neuen Aufgabe** – Der Benutzer erstellt eine neue Aufgabe und weist sie einer Kategorie zu.
+![Test-Aufgabe](images\Test-Aufgabe.png)
+![Test-Ausgabe](images\Test-Ausgabe.png)
+
+**Aufgabenbearbeitung** – Teammitglieder können Aufgaben bearbeiten, verschieben oder Checklistenpunkte hinzufügen.
+![Edit-Task](images\Edit-Task.png)
+
+**Fortschrittskontrolle** – Der Benutzer überprüft den Status aller Aufgaben im Kanban-Board.
+![Kanban-view](images\Kanban-view.png)
+
+**Abschluss der Aufgabe** – Aufgaben werden als erledigt markiert und archiviert.

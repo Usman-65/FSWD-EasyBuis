@@ -15,51 +15,112 @@ nav_order: 99
 > ---
 > ```
 
-# UI components
+# UI-Komponenten
 
-The [Just the Docs documentation](https://just-the-docs.github.io/just-the-docs/docs/ui-components) details more UI components.
+Diese Seite beschreibt die wichtigsten Benutzeroberflächenelemente des EasyBuis Task Managers und zeigt, wie sie in der Anwendung dargestellt und verwendet werden.
 
-For a quick reference of the markdown syntax, visit [this page](https://github.com/just-the-docs/just-the-docs/blob/main/docs/index-test.md?plain=1).
+**Startseite**
 
-## Images
+Die Startseite des Task Managers bietet einen klar strukturierten Einstiegspunkt für neue und wiederkehrende Benutzer.
 
-```markdown
-![get_list_todos_sample](assets/images/fswd-intro_02.png)
-```
+![Startseite](images\Startseite.png)
 
-![get_list_todos_sample](assets/images/fswd-intro_02.png)
+*Elemente:*
 
-## Callouts
+Begrüßungstext mit einer kurzen Einführung
 
-{: .info }
-> This is an info callout.
+Roter Hinweis zur Anmeldung für nicht eingeloggte Benutzer
 
-{: .tip }
-> This is a tip callout.
+Zwei Schaltflächen für Anmeldung und Registrierung
 
-{: .attention }
-> This is an attention callout.
+Navigationslinks für „Über Uns“, „Kontakt“ und „Impressum“
 
-{: .download }
-> This is a download callout.
+# Anmeldung und Registrierung
 
-## Labels
+Diese Komponenten ermöglichen es neuen Benutzern, ein Konto zu erstellen, und bestehenden Benutzern, sich anzumelden.
 
-{: .label }
-[Default label]
+**Anmeldung**
 
-{: .label .label-green }
-[Green label]
+![Log-In](images\Log-In.png)
 
-{: .label .label-red }
-[Red label]
+*Elemente:*
 
-## Mermaid.js
+Eingabefelder für E-Mail und Passwort
+
+Schaltflächen für „Anmelden“ und „Zurück zur Startseite“
+
+Link zur Registrierung
+
+**Registrierung**
+
+![Registrierung](images\Registrierung.png)
+
+*Elemente:*
+
+Eingabefelder für E-Mail und Passwort
+
+Checkbox für Nutzungsbedingungen
+
+Schaltflächen für „Registrieren“ und „Zurück zur Startseite“
+
+Link zur Anmeldung
+
+## Kanban-Board
+
+Das Kanban-Board visualisiert den Aufgabenstatus und ermöglicht Drag & Drop zur Statusänderung.
+
+![Kanban-view](images\Kanban-view.png)
+
+*Elemente:*
+
+Spalten für verschiedene Status (To Do, In Progress, In QA, Done)
+
+Schaltflächen für Abmeldung, Admin-Dashboard und Task Manager
+
+Aufgaben als Karten mit Drag & Drop-Funktion
+
+## Aufgabenverwaltung
+
+Die Aufgabenverwaltung ermöglicht das Erstellen, Bearbeiten und Löschen von Aufgaben.
+
+![Task-Manager](images\Task-Manager-Screen.png)
+
+*Elemente:*
+
+Eingabefelder für Titel und Beschreibung einer Aufgabe
+
+Schaltfläche „+ Add Task“
+
+Aufgabenliste mit Schaltflächen für „Edit“ und „Delete“
+
+## Bearbeiten einer Aufgabe
+
+Das Admin-Dashboard ermöglicht es Administratoren, Benutzer zu verwalten und Rollen zu ändern.
+
+![Edit-Task](images\Edit-Task.png)
+
+*Elemente:*
+
+Eingabefelder für Titel und Beschreibung
+
+Statusanzeige der Aufgabe
+
+Checklisten-Elemente mit Option zur Bearbeitung
+
+Schaltflächen für „Speichern“, „Zurück“ und „Neuer Punkt“
+
+
+## Mermaid-Diagramm
 
 ```mermaid
 graph TD;
-    A-->B;
-    A-->C;
+   graph TD;
+    A[Startseite] -->|Anmelden| B[Login-Seite]
+    A -->|Registrieren| C[Registrierung]
+    B -->|Nach Anmeldung| D[Kanban-Board]
+    C -->|Nach Registrierung| D
+    D -->|Aufgabe erstellen| E[Task Manager]
+    E -->|Bearbeiten| F[Aufgabe bearbeiten]
+    D -->|Admin-Zugang| G[Admin Dashboard]
+    G -->|Benutzerverwaltung| H[Benutzerrollen]
 ```
-
-Visit the [Mermaid docs](https://mermaid.js.org/intro/) for a thorough description of the charting possibilities.
