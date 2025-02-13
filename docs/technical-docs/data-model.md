@@ -25,6 +25,7 @@ Das Datenmodell des EasyBuis Task Managers bildet die Struktur der gespeicherten
 
 Die folgende Darstellung zeigt das Entity-Relationship-Diagramm (ERD) der wichtigsten Tabellen und deren Beziehungen:
 
+```mermaid
 erDiagram
     USERS {
         INTEGER id PK
@@ -52,9 +53,9 @@ erDiagram
 
 ## Datenintegrität und Einschränkungen
 
-Eindeutigkeit: Die E-Mail-Adresse eines Benutzers ist einzigartig.
+**Eindeutigkeit**: Die E-Mail-Adresse eines Benutzers ist einzigartig.
 
-Referentielle Integrität: Die task_id in der checklist-Tabelle ist ein Fremdschlüssel, der sicherstellt, dass jedes Element einer bestehenden Aufgabe zugeordnet ist.
+**Referentielle Integrität**: Die task_id in der checklist-Tabelle ist ein Fremdschlüssel, der sicherstellt, dass jedes Element einer bestehenden Aufgabe zugeordnet ist.
 
-Datenvalidierung: Die status-Felder der Tabellen tasks und checklist sind eingeschränkt auf vordefinierte Werte zur Vermeidung von Inkonsistenzen.
+**Datenvalidierung**: Die status-Felder der Tabellen tasks und checklist sind eingeschränkt auf vordefinierte Werte zur Vermeidung von Inkonsistenzen.
 

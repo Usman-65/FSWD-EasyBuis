@@ -40,7 +40,7 @@ Unsere Anwendung richtet sich an:
 
 **Kleine und mittelständische Unternehmen**, die ihre Arbeitsprozesse optimieren möchten.
 
-**Projektteams*, die eine klare Aufgabenverwaltung benötigen.
+**Projektteams**, die eine klare Aufgabenverwaltung benötigen.
 
 **Freelancer und Selbstständige**, die ihre Aufgaben effizient organisieren möchten.
 
@@ -49,20 +49,25 @@ Unsere Anwendung richtet sich an:
 ## Customer journey
 
 **Startseite** – Neue Benutzer gelangen auf die Startseite des EasyBuis Task Managers, die sie mit einer freundlichen Willkommensnachricht empfängt. Dort finden sie eine klare Navigation zur Anmeldung oder Registrierung.
-![Startseite](image\Startseite.png)
+![Startseite](images\Startseite.png)
+---
 
 **Registrierung und Anmeldung** – Der Benutzer erstellt ein Konto und meldet sich an.
 ![Registrierung](images\Registrierung.png)
-![Log-IN](image\Log-In.png)
+![Log-IN](images\Log-In.png)
+---
 
 **Erstellung einer neuen Aufgabe** – Der Benutzer erstellt eine neue Aufgabe und weist sie einer Kategorie zu.
 ![Test-Aufgabe](images\Test-Aufgabe.png)
 ![Test-Ausgabe](images\Test-Ausgabe.png)
+---
 
 **Aufgabenbearbeitung** – Teammitglieder können Aufgaben bearbeiten, verschieben oder Checklistenpunkte hinzufügen.
 ![Edit-Task](images\Edit-Task.png)
+---
 
 **Fortschrittskontrolle** – Der Benutzer überprüft den Status aller Aufgaben im Kanban-Board.
 ![Kanban-view](images\Kanban-view.png)
+---
 
 **Abschluss der Aufgabe** – Aufgaben werden als erledigt markiert und archiviert.

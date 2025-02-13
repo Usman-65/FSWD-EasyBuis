@@ -9,8 +9,7 @@ nav_order: 1
 
 {: .no_toc }
 # Architecture
-
-    Diese Seite beschreibt die Struktur der Anwendung und wie wichtige Teile der App funktionieren. Sie soll neuen Entwicklern ausreichend technisches Wissen vermitteln, um zum Code beitragen zu können.
+ Diese Seite beschreibt die Struktur der Anwendung und wie wichtige Teile der App funktionieren. Sie soll neuen Entwicklern ausreichend technisches Wissen vermitteln, um zum Code beitragen zu können.
 
 <details open markdown="block">
 {: .text-delta }
@@ -27,35 +26,35 @@ EasyBuis Task Manager ist eine Webanwendung zur Verwaltung von Aufgaben und Work
 
 Das Projekt folgt einer modularen Struktur mit wichtigen Komponenten, die in verschiedenen Dateien organisiert sind:
 
-app.py: Der Haupteinstiegspunkt der Anwendung. Initialisiert die Flask-App, die Datenbank und registriert Blueprints.
+**app.py**: Der Haupteinstiegspunkt der Anwendung. Initialisiert die Flask-App, die Datenbank und registriert Blueprints.
 
-auth_utils.py: Implementiert die rollenbasierte Zugriffskontrolle mittels Dekoratoren.
+**auth_utils.py**: Implementiert die rollenbasierte Zugriffskontrolle mittels Dekoratoren.
 
-kanban_board.py: Verwaltet die Funktionen des Kanban-Boards, einschließlich Aufgabenverschiebung und -anzeige.
+**kanban_board.py**: Verwaltet die Funktionen des Kanban-Boards, einschließlich Aufgabenverschiebung und -anzeige.
 
-Task_Manager.py: Verantwortlich für CRUD-Operationen für Aufgaben und Checklisten.
+**Task_Manager.py**: Verantwortlich für CRUD-Operationen für Aufgaben und Checklisten.
 
-templates/: Enthält HTML-Templates für die Darstellung der Ansichten.
+**templates/**: Enthält HTML-Templates für die Darstellung der Ansichten.
 
-static/: Speichert CSS-Stylesheets und JavaScript-Dateien zur Verbesserung der Benutzeroberfläche.
+**static/**: Speichert CSS-Stylesheets und JavaScript-Dateien zur Verbesserung der Benutzeroberfläche.
 
-nutzer.db: SQLite-Datenbank zur Speicherung von Benutzern, Aufgaben und Checklisten.
+**nutzer.db**: SQLite-Datenbank zur Speicherung von Benutzern, Aufgaben und Checklisten.
 
 ## Systemübersicht
 
 Die Anwendung folgt einer modularen Architektur mit einer klaren Trennung der Verantwortlichkeiten. Die wichtigsten Komponenten sind:
 
-Frontend: HTML, CSS (Bootstrap), JavaScript für die Benutzeroberfläche.
+**Frontend**: HTML, CSS (Bootstrap), JavaScript für die Benutzeroberfläche.
 
-Backend: Flask als Webframework für die Serverlogik.
+**Backend**: Flask als Webframework für die Serverlogik.
 
-Datenbank: SQLite zur Speicherung von Benutzer-, Aufgaben- und Berechtigungsdaten.
+**Datenbank**: SQLite zur Speicherung von Benutzer-, Aufgaben- und Berechtigungsdaten.
 
-Authentifizierung: Sitzungsgesteuerte Anmeldung mit rollenbasiertem Zugriff.
+**Authentifizierung**: Sitzungsgesteuerte Anmeldung mit rollenbasiertem Zugriff.
 
 ## Hauptkomponenten
 
-1. Flask Backend
+**1. Flask Backend**
 
 Das Backend ist in Python mit Flask implementiert und stellt Endpunkte zur Verwaltung von Aufgaben und Benutzern bereit.
 
@@ -67,7 +66,7 @@ kanban_board.py: Verwaltung von Aufgaben und Kanban-Logik.
 
 Task_Manager.py: CRUD-Operationen  (Create, Read, Update, Delete) für Aufgaben.
 
-2. Datenbank
+**2. Datenbank**
 
 SQLite wird zur Speicherung aller relevanten Daten verwendet. Die wichtigsten Tabellen sind:
 
@@ -77,7 +76,7 @@ tasks: Enthält Aufgabeninformationen mit Status (To Do, In Progress, Done).
 
 checklist: Zusätzliche Punkte innerhalb von Aufgaben.
 
-3. Benutzeroberfläche
+**3. Benutzeroberfläche**
 
 Bootstrap für Styling und responsives Design.
 
@@ -110,4 +109,4 @@ Falls in Zukunft eine API-Anbindung erforderlich wird, kann Flask’s RESTful-Un
 Es besteht die Möglichkeit zur Implementierung von Webhooks oder externer Datenanbindung zur Automatisierung von Workflows.
 
 
-Weitere Details sind unter design decisions zu finden
+Weitere Details sind unter Design Decisions zu finden
