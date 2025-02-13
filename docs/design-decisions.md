@@ -33,7 +33,7 @@ Ein modulares Design wäre insbesondere hilfreich, um verschiedene Module wie da
 
 Wir haben uns für die Nutzung von Flask-Blueprints entschieden.
 
-Begründung:
+**Begründung:**
 
 Eine monolithische Architektur wäre zu unflexibel, insbesondere bei zukünftigen Erweiterungen.
 
@@ -47,11 +47,29 @@ Diese Entscheidung wurde nach Abwägung der Alternativen und ersten Implementier
 
 ### Betrachtete Optionen
 
-|| Kriterium        | Monolithische Architektur | Flask mit Blueprints |
-|-----------------|--------------------------|----------------------|
-| **Wartbarkeit** | ❌ Schwer skalierbar     | ✔️ Klare Trennung der Module |
-| **Flexibilität** | ❌ Änderungen sind umständlich | ✔️ Einfache Erweiterung |
-| **Skalierbarkeit** | ❌ Begrenzte Skalierbarkeit | ✔️ Einfacher modular erweiterbar |
+<table>
+  <tr>
+    <th>Kriterium</th>
+    <th>Monolithische Architektur</th>
+    <th>Flask mit Blueprints</th>
+  </tr>
+  <tr>
+    <td><b>Wartbarkeit</b></td>
+    <td>❌ Schwer skalierbar</td>
+    <td>✔️ Klare Trennung der Module</td>
+  </tr>
+  <tr>
+    <td><b>Flexibilität</b></td>
+    <td>❌ Änderungen sind umständlich</td>
+    <td>✔️ Einfache Erweiterung</td>
+  </tr>
+  <tr>
+    <td><b>Skalierbarkeit</b></td>
+    <td>❌ Begrenzte Skalierbarkeit</td>
+    <td>✔️ Einfacher modular erweiterbar</td>
+  </tr>
+</table>
+
 
 ---
 
@@ -62,15 +80,15 @@ Diese Entscheidung wurde nach Abwägung der Alternativen und ersten Implementier
 Status: Entschieden
 Aktualisiert: 10-Jan-2025
 
-**Problemstellung**
+### Problemstellung
 
 Eine zentrale Entscheidung war, ob für die Datenbankabfragen reines SQL oder SQLAlchemy als ORM verwendet werden sollte. Während SQLAlchemy viele Vorteile hinsichtlich Abstraktion und Kompatibilität mit anderen Datenbanksystemen bietet, wäre die direkte Nutzung von SQL einfacher umzusetzen.
 
-**Entscheidung**
+### Entscheidung
 
 Wir haben uns entschieden, reines SQL zu verwenden.
 
-Begründung:
+**Begründung:**
 
 SQL ist bereits bekannt und erfordert keine zusätzliche Einarbeitung.
 
@@ -78,33 +96,52 @@ Die Anwendung nutzt SQLite, sodass ORM-Funktionen derzeit nicht notwendig sind.
 
 Eine spätere Umstellung auf ein ORM ist möglich, falls ein Wechsel zu PostgreSQL oder MySQL erfolgt.
 
-## Betrachtete Optionen
-| Kriterium                  | Plain SQL                | SQLAlchemy               |
-|----------------------------|--------------------------|--------------------------|
-| **Einfachheit**            | ✔️ Direkt verständlich  | ❌ Lernaufwand nötig    |
-| **Erfahrungen**   | ✔️ schon gesammelt  | ❌ wenig Erfahrung |
-| **Flexibilität für zukünftige DBs** | ❌ Muss umgeschrieben werden | ✔️ Einfacher Wechsel |
+### Betrachtete Optionen
 
----
+<table>
+  <tr>
+    <th>Kriterium</th>
+    <th>Plain SQL</th>
+    <th>SQLAlchemy</th>
+  </tr>
+  <tr>
+    <td><b>Einfachheit</b></td>
+    <td>✔️ Direkt verständlich</td>
+    <td>❌ Lernaufwand nötig</td>
+  </tr>
+  <tr>
+    <td><b>Erfahrungen</b></td>
+    <td>✔️ schon gesammelt</td>
+    <td>❌ wenig Erfahrung</td>
+  </tr>
+  <tr>
+    <td><b>Flexibilität für zukünftige DBs</b></td>
+    <td>❌ Muss umgeschrieben werden</td>
+    <td>✔️ Einfacher Wechsel</td>
+  </tr>
+</table>
+
+
+
 
 ## 03: [Datenbankzugriff – Benutzerrollen und Berechtigungen]
 
-## Meta
+### Meta
 
 Status: Entschieden
 Aktualisiert: 02-Feb-2025
 
-**Problemstellung**
+### Problemstellung
 
 Wie sollte die Zugriffskontrolle für verschiedene Benutzerrollen umgesetzt werden? Die Herausforderung bestand darin, eine sichere, aber auch flexible Lösung zu finden.
 
 Anfangs wurde eine einfache Benutzerverwaltung ohne Rollenmodell benutzt, jedoch wurde schnell klar, dass verschiedene Berechtigungen für Administratoren, Manager und Benutzer notwendig sind.
 
-**Entscheidung**
+## Entscheidung
 
 Wir haben uns für ein rollenbasiertes Berechtigungssystem entschieden, implementiert durch eine separate auth_utils.py Datei mit einem requires_permission Decorator.
 
-Begründung:
+**Begründung:**
 
 Die Zugriffskontrolle kann zentral gesteuert und leicht erweitert werden.
 
@@ -112,9 +149,7 @@ Administratoren können Benutzer verwalten, während normale Benutzer nur ihre e
 
 Rollen wie „Leser“ ermöglichen es, dass gewisse Benutzer nur Ansichtsrechte haben.
 
-## Betrachtete Optionen
-
-## Betrachtete Optionen
+### Betrachtete Optionen
 
 <table>
   <tr>

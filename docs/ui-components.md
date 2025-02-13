@@ -1,11 +1,7 @@
 ---
 title: UI Components
-nav_exclude: true
+nav_order: 99
 ---
-
-{: .label .label-red }
-[to be deleted]
-
 
 # UI-Komponenten
 
