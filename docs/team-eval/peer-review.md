@@ -36,3 +36,25 @@ Trotz der insgesamt sehr positiven Zusammenarbeit gibt es einige Optimierungsmö
 
 ### Fazit
 Insgesamt war die Zusammenarbeit mit Usman eine sehr wertvolle und bereichernde Erfahrung, die von gegenseitigem Vertrauen, Respekt und Professionalität geprägt war. Sein stetiges Wachstum und seine Lernbereitschaft haben maßgeblich zum Erfolg des Projekts beigetragen.
+
+
+## [Magnus Kietzig] - review 1 Usman AHmad an Magnus Kietzig
+
+### My observation (Wahrnehmung)
+
+Nach einer ausführlichen Reflexion kann ich festhalten, dass die Zusammenarbeit mit Magnus durchweg professionell, konstruktiv und äußerst angenehm war. Besonders hervorzuheben ist seine kontinuierliche Unterstützung und sein Engagement, das sich sowohl in der Qualität seiner Arbeit als auch in seiner Verlässlichkeit widerspiegelte. Ich hatte jederzeit die Möglichkeit, mich mit ihm zusammenzusetzen und offen über Herausforderungen sowie Lösungsansätze zu sprechen.
+
+Unsere Zusammenarbeit war durch eine hohe Kommunikationsbereitschaft geprägt. Über Discord koordinierten wir unsere Treffen, die stets reibungslos und effizient verliefen. Magnus zeigte sich dabei stets zuverlässig, pünktlich und bestens vorbereitet. Sein lösungsorientierter Ansatz und seine Hilfsbereitschaft trugen maßgeblich zum Fortschritt des Projekts bei.
+
+Besonders schätze ich seine Fähigkeit, sich aktiv in die Problemlösung einzubringen und gemeinsam mit mir an den verschiedenen Aspekten des Projekts zu arbeiten. Durch seine strukturierte und gewissenhafte Arbeitsweise gelang es uns, Herausforderungen effizient zu meistern und die gesetzten Ziele zu erreichen. Insgesamt war die Zusammenarbeit mit Magnus äußerst bereichernd und von gegenseitigem Vertrauen sowie Professionalität geprägt.
+
+### Effect on me (Wirkung)
+Die Zusammenarbeit mit Magnus hatte eine durchweg positive Wirkung auf mich. Seine professionelle und strukturierte Herangehensweise half mir, meine eigenen Arbeitsmethoden zu optimieren und effizienter an den Projektzielen zu arbeiten. Besonders seine Verlässlichkeit und sein Engagement gaben mir die Sicherheit, dass wir gemeinsam produktive Fortschritte erzielen konnten.
+
+Seine Hilfsbereitschaft und seine offene Kommunikation erleichterten es mir, Herausforderungen anzusprechen und konstruktive Lösungen zu finden. Ich konnte mich jederzeit mit Fragen an ihn wenden und erhielt stets fundiertes Feedback, das mir half, meine eigenen Fähigkeiten weiterzuentwickeln. Durch seine ruhige und besonnene Art schuf er eine angenehme Arbeitsatmosphäre, die es mir ermöglichte, mich voll auf meine Aufgaben zu konzentrieren und meine Leistung kontinuierlich zu verbessern.
+
+### Tip for the future (Wunsch)
+Es wäre wünschenswert, wenn Magnus in Zukunft seine bereits ausgezeichnete Kommunikations- und Kooperationsfähigkeit weiter ausbaut und gegebenenfalls noch stärker auf eine effiziente Aufgabenverteilung achtet. So könnte er seine Stärken noch gezielter einsetzen und die Zusammenarbeit weiter optimieren.
+
+### Fazit
+Die Zusammenarbeit mit Magnus war durchweg professionell, angenehm und äußerst produktiv. Seine Verlässlichkeit, Hilfsbereitschaft und strukturierte Arbeitsweise haben maßgeblich zum Erfolg des Projekts beigetragen. Besonders seine klare Kommunikation und sein Engagement haben die Teamarbeit erleichtert und für eine effiziente Umsetzung unserer Ziele gesorgt. Insgesamt war die gemeinsame Arbeit mit ihm eine wertvolle Erfahrung, die sowohl meine fachlichen als auch meine zwischenmenschlichen Kompetenzen bereichert hat.
