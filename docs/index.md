@@ -8,24 +8,34 @@ nav_order: 0
 >
 > You may delete this `attention` box.
 
-# [Project Name]
+# [Easy Buis]
 
-[Project description]
+Der EasyBuis Task Manager ist eine webbasierte Anwendung zur effizienten Verwaltung von Aufgaben inerhalb eines Projektes. Die Anwendung bietet ein intuitives Kanban-Board, eine detaillierte Aufgabenverwaltung sowie eine Benutzer- und Rollenverwaltung für unterschiedliche Berechtigungen. Ziel ist es, die Zusammenarbeit in Teams zu erleichtern und eine übersichtliche Organisation von Aufgaben zu ermöglichen.
+
+**Unsere Ziele:**
+
+Unser Ziel als Gruppe ist es, eine voll funktionsfähige und benutzerfreundliche Webanwendung zu entwickeln, die auch in der Realität, nach kleinen Anpassungen angeboten werden könnte. Konkret möchten wir eine funktionierende Anwendung sowohl bei der Datenbankanbindung als auch bei den Hauptfunktionen der Anwendung.
+
+**Hauptfunktionen:**
+
+Aufgabenverwaltung mit CRUD-Operationen (Erstellen, Bearbeiten, Löschen, Anzeigen)
+
+Visuelle Darstellung von Aufgaben im Kanban-Board
+
+Benutzerverwaltung mit rollenbasiertem Zugriff (Admin, Manager, Benutzer, Leser)
+
+Checklisten für Aufgaben
+
+Sichere Anmeldung und Registrierung
 
 ## Team members
 
-### [Jane Dane]
-
-About
-: Some info about Jane
+### [Magnus Kietzig]
 
 Matr.-Nr.
-: 1234567
+: 77211985153
 
 ### [Joe Doe]
-
-About
-: Some info about Joe
 
 Matr.-Nr.
 : 1234567
