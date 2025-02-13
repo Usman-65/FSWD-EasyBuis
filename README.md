@@ -3,6 +3,7 @@ Dieses Repository beinhaltet unser Projekt EasyBuis im Rahmen des Kurses Fullsta
 
 Zum Verständniss dieses Projektes unnd unsererm Vorgehen enthält dieses Repository eine Dokumentation im 📁 docs/ Ordner.
 Diese Struktur kann über die Deployments oder unter diesem Link: https://usman-65.github.io/FSWD-EasyBuis/ aufgerufen werden.
+Den Link zu unserer in der Vorlesung präsentierte Power-Point finden sie hier: https://hwrberlinde-my.sharepoint.com/:p:/g/personal/s_kietzig23_hwr-berlin_de/ERddCLzbbP1Ov12vLvBKWVwB4Iuk4oSS4uB_G_KnT72xvw?e=ehK4n0
 
 ## Schritte zur Ausführung der App
 
