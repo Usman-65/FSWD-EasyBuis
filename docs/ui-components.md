@@ -107,4 +107,4 @@ Schaltflächen für „Speichern“, „Zurück“ und „Neuer Punkt“
 
 ## UI-Diagramm
 
-![UI-Diagram](images\UI-Diagram.png)
+![UI-Diagram](images\UI-DIagram.png)
