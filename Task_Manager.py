@@ -75,13 +75,13 @@ def edit_task(task_id):
 
         # Checkliste aktualisieren
         checklist_items = request.form.getlist('checklist_item')
-        checklist_statuses = request.form.getlist('checklist_status')
+        checked_items = request.form.getlist('checklist_status')
 
         # Vorhandene Einträge abrufen, um doppelte zu vermeiden
         existing_checklist = {row['item']: row['id'] for row in cursor.execute("SELECT id, item FROM checklist WHERE task_id = ?", (task_id,))}
 
-        for item, status in zip(checklist_items, checklist_statuses):
-            status_bool = True if status == 'on' else False
+        for item in checklist_items:
+            status_bool = item in checked_items
 
             # Falls das Item bereits existiert, updaten statt erneut speichern
             if item in existing_checklist:

@@ -27,7 +27,7 @@
             <ul id="checklist">
                 {% for item in checklist %}
                 <li id="checklist-item-{{ item.id }}">
-                    <input type="checkbox" name="checklist_status" {% if item.status %}checked{% endif %}>
+                    <input type="checkbox" name="checklist_status" value="{{ item.item }}" {% if item.status %}checked{% endif %}>
                     <input type="text" name="checklist_item" value="{{ item.item }}" required>
                     
                     <!-- Löschen-Button -->
