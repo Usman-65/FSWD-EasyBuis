@@ -49,7 +49,8 @@ Nach erfolgreicher Registrierung wird der Benutzer zum Log-In weitergeleitet, um
 
 Falls die E-Mail nicht Konform eingegeben wurde, das Passwort vergessen oder die Nutzungsbedingungen nicht akzeptiert worden sind erscheint eine Fehlermeldung wie diese:
 
-![Registrierung-Fehlermeldung](images/Registrierung-Falsch.png)
+![Registrierung-Fehlermeldung](/docs/images/Registrierung-Falsch.png)
+
 
 
 ## Modul: Task Manager
