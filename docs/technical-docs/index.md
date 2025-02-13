@@ -4,9 +4,6 @@ has_children: true
 nav_order: 2
 ---
 
-{: .label }
-[Jane Dane]
-
 # Technical documentation
 
 Dieser Teil beschreibt den Technischen Aufbau der Web-Applikation 

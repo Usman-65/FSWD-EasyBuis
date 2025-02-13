@@ -4,8 +4,6 @@ parent: Technical Docs
 nav_order: 2
 ---
 
-{: .label }
-[Jane Dane]
 
 {: .no_toc }
 # Data model

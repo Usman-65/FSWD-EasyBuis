@@ -3,17 +3,24 @@ title: UI Components
 nav_order: 99
 ---
 
+<details open markdown="block">
+{: .text-delta }
+<summary>Table of contents</summary>
++ ToC
+{: toc }
+</details>
+
 # UI-Komponenten
 
 Diese Seite beschreibt die wichtigsten Benutzeroberflächenelemente des EasyBuis Task Managers und zeigt, wie sie in der Anwendung dargestellt und verwendet werden.
 
-**Startseite**
+## Startseite
 
 Die Startseite des Task Managers bietet einen klar strukturierten Einstiegspunkt für neue und wiederkehrende Benutzer.
 
 ![Startseite](images\Startseite.png)
 
-*Elemente:*
+**Elemente:**
 
 Begrüßungstext mit einer kurzen Einführung
 
@@ -23,15 +30,15 @@ Zwei Schaltflächen für Anmeldung und Registrierung
 
 Navigationslinks für „Über Uns“, „Kontakt“ und „Impressum“
 
-# Anmeldung und Registrierung
+## Anmeldung und Registrierung
 
 Diese Komponenten ermöglichen es neuen Benutzern, ein Konto zu erstellen, und bestehenden Benutzern, sich anzumelden.
 
-**Anmeldung**
+### Anmeldung
 
 ![Log-In](images\Log-In.png)
 
-*Elemente:*
+**Elemente:**
 
 Eingabefelder für E-Mail und Passwort
 
@@ -39,11 +46,11 @@ Schaltflächen für „Anmelden“ und „Zurück zur Startseite“
 
 Link zur Registrierung
 
-**Registrierung**
+### Registrierung
 
 ![Registrierung](images\Registrierung.png)
 
-*Elemente:*
+**Elemente:**
 
 Eingabefelder für E-Mail und Passwort
 
@@ -59,7 +66,7 @@ Das Kanban-Board visualisiert den Aufgabenstatus und ermöglicht Drag & Drop zur
 
 ![Kanban-view](images\Kanban-view.png)
 
-*Elemente:*
+**Elemente:**
 
 Spalten für verschiedene Status (To Do, In Progress, In QA, Done)
 
@@ -73,7 +80,7 @@ Die Aufgabenverwaltung ermöglicht das Erstellen, Bearbeiten und Löschen von Au
 
 ![Task-Manager](images\Task-Manager-Screen.png)
 
-*Elemente:*
+**Elemente:**
 
 Eingabefelder für Titel und Beschreibung einer Aufgabe
 
@@ -87,7 +94,7 @@ Das Admin-Dashboard ermöglicht es Administratoren, Benutzer zu verwalten und Ro
 
 ![Edit-Task](images\Edit-Task.png)
 
-*Elemente:*
+**Elemente:**
 
 Eingabefelder für Titel und Beschreibung
 

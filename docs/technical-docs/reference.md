@@ -4,9 +4,6 @@ parent: Technical Docs
 nav_order: 3
 ---
 
-{: .label }
-[Jane Dane]
-
 {: .no_toc }
 # Reference documentation
 
