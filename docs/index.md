@@ -4,7 +4,7 @@ nav_order: 0
 ---
 
 
-# [Easy Buis]
+# Easy Buis
 
 Der EasyBuis Task Manager ist eine webbasierte Anwendung zur effizienten Verwaltung von Aufgaben inerhalb eines Projektes. Die Anwendung bietet ein intuitives Kanban-Board, eine detaillierte Aufgabenverwaltung sowie eine Benutzer- und Rollenverwaltung für unterschiedliche Berechtigungen. Ziel ist es, die Zusammenarbeit in Teams zu erleichtern und eine übersichtliche Organisation von Aufgaben zu ermöglichen.
 

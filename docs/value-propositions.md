@@ -46,7 +46,7 @@ Unsere Anwendung richtet sich an:
 
 ## Customer journey
 
-# Startseite
+### Startseite
 
  Neue Benutzer gelangen auf die Startseite des EasyBuis Task Managers, die sie mit einer freundlichen Willkommensnachricht empfängt. Dort finden sie eine klare Navigation zur Anmeldung oder Registrierung.
 
@@ -54,7 +54,7 @@ Unsere Anwendung richtet sich an:
 
 
 
-# Registrierung und Anmeldung
+### Registrierung und Anmeldung
 
  Der Benutzer erstellt ein Konto und meldet sich an.
 
@@ -62,26 +62,26 @@ Unsere Anwendung richtet sich an:
 ![Log-IN](images\Log-In.png)
 
 
-# Erstellung einer neuen Aufgabe
+### Erstellung einer neuen Aufgabe
  Der Benutzer erstellt eine neue Aufgabe und weist sie einer Kategorie zu.
 
 ![Test-Aufgabe](images\Test-Aufgabe.png)
 ![Test-Ausgabe](images\Test-Ausgabe.png)
 
 
-# Aufgabenbearbeitung 
+### Aufgabenbearbeitung 
 Teammitglieder können Aufgaben bearbeiten, verschieben oder Checklistenpunkte hinzufügen.
 
 ![Edit-Task](images\Edit-Task.png)
 
 
-# Fortschrittskontrolle
+### Fortschrittskontrolle
 
 Der Benutzer überprüft den Status aller Aufgaben im Kanban-Board.
 
 ![Kanban-view](images\Kanban-view.png)
 
 
-# Abschluss der Aufgabe
+### Abschluss der Aufgabe
 
 Aufgaben werden als erledigt markiert und archiviert.
