@@ -23,7 +23,7 @@ Das Datenmodell des EasyBuis Task Managers bildet die Struktur der gespeicherten
 
 Die folgende Darstellung zeigt das Entity-Relationship-Diagramm (ERD) der wichtigsten Tabellen und deren Beziehungen:
 
-![ERD](images\ERD.png)
+![ERD](../images\ERD.png)
 
 
 ## Datenintegrität und Einschränkungen
