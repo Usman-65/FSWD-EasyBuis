@@ -49,12 +49,10 @@ Nach erfolgreicher Registrierung wird der Benutzer zum Log-In weitergeleitet, um
 
 Falls die E-Mail nicht Konform eingegeben wurde, das Passwort vergessen oder die Nutzungsbedingungen nicht akzeptiert worden sind erscheint eine Fehlermeldung wie diese:
 
-![Registrierung-Fehlermeldung](images\Registrierung-Falsch.png)
+![Registrierung-Fehlermeldung](images/Registrierung-Falsch.png)
 
 
 ## Modul: Task Manager
-
-/
 
 **Route:** /task_manager/
 
@@ -64,7 +62,7 @@ Falls die E-Mail nicht Konform eingegeben wurde, das Passwort vergessen oder die
 Diese Route gibt eine Liste aller vorhandenen Aufgaben zurück. Aufgaben enthalten eine ID, einen Titel, eine Beschreibung, einen Status und den Ersteller der Aufgabe.
 
 **Beispielausgabe:**
-![Task-Manager-Screen](images\Task-Manager-Screen.png)
+![Task-Manager-Screen](images/Task-Manager-Screen.png)
 
 
 add_task()
@@ -77,8 +75,8 @@ add_task()
 Diese Funktion ermöglicht es Benutzern, neue Aufgaben zu erstellen. Dabei werden der Titel und die Beschreibung angegeben. Die Task wird zudem auch automatisch dem Status: "Im Backlog" zugewiesen.
 
 **Beispielausgabe:**
-![Test-Aufgabe](images\Test-Aufgabe.png)
-![Test-Ausgabe](images\Test-Ausgabe.png)
+![Test-Aufgabe](images/Test-Aufgabe.png)
+![Test-Ausgabe](images/Test-Ausgabe.png)
 
 
 delete_task(task_id)
@@ -92,8 +90,8 @@ Löscht eine Aufgabe anhand ihrer ID. Falls die Aufgabe nicht existiert, wird ei
 
 **Beispielausgabe:**
 
-![Test-Löschung](images\Test-Löschung.png)
-![Test-Löschung nach-Löschung](images\Test-Löschung.nach-Löschung.png)
+![Test-Löschung](images/Test-Löschung.png)
+![Test-Löschung nach-Löschung](images/Test-Löschung.nach-Löschung.png)
 
 ## Modul: Kanban-Board#
 
@@ -107,7 +105,7 @@ kanban_board_view()
 Diese Route zeigt das Kanban-Board mit allen aktuellen Aufgaben, gruppiert nach Status (To Do, In Progress, Done).
 
 **Beispielausgabe:**
-![Kanban-view](images\Kanban-view.png)
+![Kanban-view](images/Kanban-view.png)
 
 update_status()
 
@@ -119,7 +117,7 @@ update_status()
 Ändert den Status einer Aufgabe. Der Benutzer kann eine Aufgabe z. B. von 'To Do' auf 'In Progress' verschieben.
 
 **Beispielausgabe:**
-![status-update](images\status-update.png)
+![status-update](images/status-update.png)
 
 ## Modul: Benutzerverwaltung
 
@@ -133,8 +131,8 @@ admin_dashboard()
 Diese Route zeigt das Admin-Dashboard, in dem Administratoren Benutzer verwalten können. Administratoren können Rollen ändern und Benutzerkonten löschen, sowie nach bestimmten Konten Suchen.
 
 **Beispielausgabe:**
-![Admin-Dashboard](images\Admin-Dashboard.png)
-![Admin-Suche](images\Admin-Suche.png)
+![Admin-Dashboard](images/Admin-Dashboard.png)
+![Admin-Suche](images/Admin-Suche.png)
 
 
 change_role()
@@ -147,7 +145,7 @@ change_role()
 Ermöglicht es Administratoren, die Rolle eines Benutzers zu ändern. Beispielsweise kann ein Benutzer von 'Benutzer' auf 'Manager' hochgestuft werden.
 
 **Beispielausgabe:**
-![Change-Role](images\Change-Role.png)
+![Change-Role](images/Change-Role.png)
 
 delete_user(user_id)
 
@@ -159,5 +157,5 @@ delete_user(user_id)
 Löscht einen Benutzer aus dem System. Nur Administratoren haben im Admin-Dashboard Zugriff auf diese Funktion.
 
 **Beispielausgabe:**
-![User-Löschen](images\User-Löschen.png)
-![User-Löschen.nach-Löschen](images\User-Löschen.nach-Löschen.png)
+![User-Löschen](images/User-Löschen.png)
+![User-Löschen.nach-Löschen](images/User-Löschen.nach-Löschen.png)
