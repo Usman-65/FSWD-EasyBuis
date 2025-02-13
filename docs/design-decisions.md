@@ -114,8 +114,27 @@ Rollen wie „Leser“ ermöglichen es, dass gewisse Benutzer nur Ansichtsrechte
 
 ## Betrachtete Optionen
 
-| Kriterium        | Keine Rollen             | Rollenbasiertes System |
-|-----------------|--------------------------|----------------------|
-| **Sicherheit** | ❌ Jeder hat die gleichen Rechte | ✔️ Zugriffsbeschränkungen möglich |
-| **Erweiterbarkeit** | ❌ Schwer skalierbar | ✔️ Neue Rollen können leicht hinzugefügt werden |
-| **Code-Wartbarkeit** | ✔️ Einfacher Code | ❌ Etwas mehr Implementierungsaufwand |
+## Betrachtete Optionen
+
+<table>
+  <tr>
+    <th>Kriterium</th>
+    <th>Keine Rollen</th>
+    <th>Rollenbasiertes System</th>
+  </tr>
+  <tr>
+    <td><b>Sicherheit</b></td>
+    <td>❌ Jeder hat die gleichen Rechte</td>
+    <td>✅ Zugriffsbeschränkungen</td>
+  </tr>
+  <tr>
+    <td><b>Erweiterbarkeit</b></td>
+    <td>❌ Schwer skalierbar</td>
+    <td>✅ Neue Rollen können leicht hinzugefügt werden</td>
+  </tr>
+  <tr>
+    <td><b>Code-Wartbarkeit</b></td>
+    <td>✅ Einfacher Code</td>
+    <td>❌ Etwas mehr Implementierungsaufwand</td>
+  </tr>
+</table>

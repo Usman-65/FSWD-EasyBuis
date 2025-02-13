@@ -25,30 +25,7 @@ Das Datenmodell des EasyBuis Task Managers bildet die Struktur der gespeicherten
 
 Die folgende Darstellung zeigt das Entity-Relationship-Diagramm (ERD) der wichtigsten Tabellen und deren Beziehungen:
 
-```mermaid
-erDiagram
-    USERS {
-        INTEGER id PK
-        TEXT email UNIQUE
-        TEXT password
-        TEXT role
-    }
-    TASKS {
-        INTEGER id PK
-        TEXT title
-        TEXT description
-        TEXT status
-        TEXT created_by FK
-    }
-    CHECKLIST {
-        INTEGER id PK
-        INTEGER task_id FK
-        TEXT item
-        BOOLEAN status
-    }
-    
-    USERS ||--o{ TASKS : erstellt
-    TASKS ||--o{ CHECKLIST : enthält
+![ERD](images\ERD.png)
 
 
 ## Datenintegrität und Einschränkungen
