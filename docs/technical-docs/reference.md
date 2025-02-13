@@ -18,8 +18,6 @@ nav_order: 3
 
 ## Modul: Authentifizierung
 
-login()
-
 **Route:** /login
 
 **Methoden:** POST, GET
@@ -65,7 +63,7 @@ Diese Route gibt eine Liste aller vorhandenen Aufgaben zurück. Aufgaben enthalt
 ![Task-Manager-Screen](../images/Task-Manager-Screen.png)
 
 
-add_task()
+# add_task()
 
 **Route:** /task_manager/add_task
 
@@ -79,7 +77,7 @@ Diese Funktion ermöglicht es Benutzern, neue Aufgaben zu erstellen. Dabei werde
 ![Test-Ausgabe](../images/Test-Ausgabe.png)
 
 
-delete_task(task_id)
+# delete_task(task_id)
 
 **Route:** /task_manager/delete_task/<int:task_id>
 
@@ -95,7 +93,7 @@ Löscht eine Aufgabe anhand ihrer ID. Falls die Aufgabe nicht existiert, wird ei
 
 ## Modul: Kanban-Board#
 
-kanban_board_view()
+# kanban_board_view()
 
 **Route:** /kanban_board/
 
@@ -107,7 +105,7 @@ Diese Route zeigt das Kanban-Board mit allen aktuellen Aufgaben, gruppiert nach 
 **Beispielausgabe:**
 ![Kanban-view](../images/Kanban-view.png)
 
-update_status()
+# update_status()
 
 **Route:** /kanban_board/update_status
 
@@ -121,7 +119,7 @@ update_status()
 
 ## Modul: Benutzerverwaltung
 
-admin_dashboard()
+# admin_dashboard()
 
 **Route:** /admin_dashboard
 
@@ -135,7 +133,7 @@ Diese Route zeigt das Admin-Dashboard, in dem Administratoren Benutzer verwalten
 ![Admin-Suche]../(images/Admin-Suche.png)
 
 
-change_role()
+# change_role()
 
 **Route:** /change_role
 
@@ -147,7 +145,7 @@ Ermöglicht es Administratoren, die Rolle eines Benutzers zu ändern. Beispielsw
 **Beispielausgabe:**
 ![Change-Role](../images/Change-Role.png)
 
-delete_user(user_id)
+# delete_user(user_id)
 
 **Route:** /delete_user/<int:user_id>
 

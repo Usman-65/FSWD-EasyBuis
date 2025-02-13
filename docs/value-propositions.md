@@ -46,27 +46,42 @@ Unsere Anwendung richtet sich an:
 
 ## Customer journey
 
-**Startseite** – Neue Benutzer gelangen auf die Startseite des EasyBuis Task Managers, die sie mit einer freundlichen Willkommensnachricht empfängt. Dort finden sie eine klare Navigation zur Anmeldung oder Registrierung.
+# Startseite
+
+ Neue Benutzer gelangen auf die Startseite des EasyBuis Task Managers, die sie mit einer freundlichen Willkommensnachricht empfängt. Dort finden sie eine klare Navigation zur Anmeldung oder Registrierung.
+
 ![Startseite](images\Startseite.png)
------------------------------------------------------------------------------------------------------------------------------
 
 
-**Registrierung und Anmeldung** – Der Benutzer erstellt ein Konto und meldet sich an.
+
+# Registrierung und Anmeldung
+
+ Der Benutzer erstellt ein Konto und meldet sich an.
+
 ![Registrierung](images\Registrierung.png)
 ![Log-IN](images\Log-In.png)
------------------------------------------------------------------------------------------------------------------------------
 
-**Erstellung einer neuen Aufgabe** – Der Benutzer erstellt eine neue Aufgabe und weist sie einer Kategorie zu.
+
+# Erstellung einer neuen Aufgabe
+ Der Benutzer erstellt eine neue Aufgabe und weist sie einer Kategorie zu.
+
 ![Test-Aufgabe](images\Test-Aufgabe.png)
 ![Test-Ausgabe](images\Test-Ausgabe.png)
-----------------------------------------------------------------------------------------------------------------------------
 
-**Aufgabenbearbeitung** – Teammitglieder können Aufgaben bearbeiten, verschieben oder Checklistenpunkte hinzufügen.
+
+# Aufgabenbearbeitung 
+Teammitglieder können Aufgaben bearbeiten, verschieben oder Checklistenpunkte hinzufügen.
+
 ![Edit-Task](images\Edit-Task.png)
-----------------------------------------------------------------------------------------------------------------------------
 
-**Fortschrittskontrolle** – Der Benutzer überprüft den Status aller Aufgaben im Kanban-Board.
+
+# Fortschrittskontrolle
+
+Der Benutzer überprüft den Status aller Aufgaben im Kanban-Board.
+
 ![Kanban-view](images\Kanban-view.png)
------------------------------------------------------------------------------------------------------------------------------
 
-**Abschluss der Aufgabe** – Aufgaben werden als erledigt markiert und archiviert.
+
+# Abschluss der Aufgabe
+
+Aufgaben werden als erledigt markiert und archiviert.
