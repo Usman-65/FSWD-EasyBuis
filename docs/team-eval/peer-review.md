@@ -35,7 +35,7 @@ Auch die regelmäßige Absprache und gemeinsame Lösungsfindung über Discord er
 
 ### Tip for the future (Wunsch)
 
-Trotz der insgesamt sehr positiven Zusammenarbeit gibt es einige Optimierungsmöglichkeiten, die zukünftige Projekte noch effizienter gestalten könnten. Eine präzisere Formulierung von Commits und eine noch klarere Dokumentation der vorgenommenen Änderungen könnten dazu beitragen, dass der Code langfristig besser nachvollziehbar bleibt. Zudem könnte ein leicht verbessertes Zeitmanagement in bestimmten Phasen des Projekts helfen, einzelne Arbeitsschritte noch gezielter zu planen und mögliche Engpässe zu vermeiden.
+Trotz der insgesamt sehr positiven Zusammenarbeit gibt es einige Optimierungsmöglichkeiten, die zukünftige Projekte noch effizienter gestalten könnten. Eine präzisere Formulierung von Commits und eine noch klarere Dokumentation der vorgenommenen Änderungen könnten dazu beitragen, dass der Code langfristig besser nachvollziehbar bleibt. 
 
 ### Fazit
 Insgesamt war die Zusammenarbeit mit Usman eine sehr wertvolle und bereichernde Erfahrung, die von gegenseitigem Vertrauen, Respekt und Professionalität geprägt war. Sein stetiges Wachstum und seine Lernbereitschaft haben maßgeblich zum Erfolg des Projekts beigetragen.
